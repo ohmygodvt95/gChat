@@ -9,6 +9,8 @@ en:
     price: Price
     chat: Chat now
     logout: Logout
+    login: Log in
+    edit_account: Edit account
   pages:
     home:
       login_now: Login now

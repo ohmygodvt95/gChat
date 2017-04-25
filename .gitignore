@@ -28,3 +28,10 @@ config/secrets.yml
 config/settings.local.yml
 config/settings/*.local.yml
 config/environments/*.local.yml
+/.framgia-ci-reports/
+/.scss-lint.yml
+/.rubocop_enabled.yml
+/.rubocop_disabled.yml
+/.rubocop.yml
+/.framgia-ci-result.temp.yml
+/.framgia-ci.yml

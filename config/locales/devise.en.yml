@@ -2,6 +2,22 @@
 
 en:
   devise:
+    edit:
+      we_need_your_current_password: we need your current password to confirm your changes
+      cancel_account: Cancel my account
+      unhappy: Unhappy?
+      are_you_sure: Are you sure?
+      back: Back
+      update: Update
+      char_minimum: characters minimum
+      currently_waiting_confirm: Currently waiting confirmation for
+      leave_blank_if: leave blank if you don't want to change it
+    links:
+      already_available_account: Already available account?
+      no_account_available: No account available?
+      forgot_your_password: Forgot your password?
+      didnt_receive_confim: Didn't receive confirmation instructions?
+      didnt_receive_unlock: "Didn't receive unlock instructions?"
     confirmations:
       confirmed: "Your email address has been successfully confirmed."
       send_instructions: "You will receive an email with instructions for how to confirm your email address in a few minutes."
