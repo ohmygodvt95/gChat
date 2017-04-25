@@ -1,0 +1,57 @@
+$gray: #808080;
+$black: #000;
+
+.list-contact ul {
+  list-style: none;
+  margin: 5px;
+  padding: 0;
+
+  li {
+    border-radius: 3px;
+    box-shadow: 0 0 5px $gray;
+    cursor: pointer;
+    margin: 5px;
+    overflow: hidden;
+    padding: 5px;
+    transition: .25s;
+
+    img {
+      border: 1px solid $gray;
+      border-radius: 50%;
+      float: left;
+      height: 50px;
+      margin-right: 5px;
+      width: 50px;
+    }
+
+    div {
+      height: 50px;
+    }
+  }
+
+  li:hover {
+    box-shadow: 0 0 5px $black;
+  }
+}
+.modal {
+
+  .tab-pane {
+    height: 490px;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  hr{
+    margin: 10px;
+  }
+}
+
+.border-left {
+  border-right: 2px solid $gray;
+}
+
+.navbar-custom-menu {
+  a {
+    cursor: pointer;
+  }
+}

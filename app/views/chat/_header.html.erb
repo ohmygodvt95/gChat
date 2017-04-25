@@ -17,29 +17,10 @@
     <div class="navbar-custom-menu">
       <ul class="nav navbar-nav">
         <li class="dropdown messages-menu">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          <a ng-click="openContactModal()">
             <i class="fa fa-user-plus"></i>
             <span class="label label-success">4</span>
           </a>
-          <ul class="dropdown-menu">
-            <li class="header">
-              <%= t "chat.header.you_have" %>
-              {{ 4 }}
-              <%= t "chat.header.contact_request" %></li>
-            <li>
-              <ul class="menu">
-                <li>
-                  <a href="#">
-                    <h4>
-                      <%= current_user.username %>
-                    </h4>
-                    <p><%= current_user.email %></p>
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li class="footer"><a href="#"><%= t "chat.header.contact_management" %></a></li>
-          </ul>
         </li>
         <li class="dropdown notifications-menu">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
