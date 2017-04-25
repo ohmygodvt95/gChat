@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      <%= t "app.name" %> | <%= t "app.slogan" %>
+    </title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag "application", media: "all" %>
+    <meta name="base" content="<%= root_path %>api/v1/">
+  </head>
+
+  <body class="fixed" ng-app="GChat">
+    <div class="wrapper skin-blue">
+      <%= render "chat/header" %>
+      <%= render "chat/sidebar" %>
+      <%= yield %>
+    </div>
+    <div class="hidden">
+      <%= render "templates/welcome" %>
+    </div>
+    <%= javascript_include_tag "application" %>
+  </body>
+</html>

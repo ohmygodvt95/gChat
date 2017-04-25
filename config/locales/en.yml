@@ -1,6 +1,8 @@
 en:
   app:
+    char: G
     name: "G-Chat"
+    short_name: Chat
     slogan: Make chat easy
   header:
     sign_in: Sign in
@@ -11,7 +13,18 @@ en:
     logout: Logout
     login: Log in
     edit_account: Edit account
+    toggle_navition: Toggle navigation
   pages:
     home:
       login_now: Login now
       chat_now: Chat now
+  chat:
+    welcome: Welcome to GChat
+    header:
+      you_have: "You have"
+      contact_request: "contact request"
+      contact_management: Manage my contacts
+      notifications: notifications
+      view_all: View all
+      member_since: Member since
+      profile: Profile

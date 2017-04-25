@@ -1,0 +1,97 @@
+<header class="main-header" ng-controller="HeaderController">
+  <%= link_to root_path, class: "logo" do %>
+    <span class="logo-mini">
+      <b><%= t "app.char" %></b><%= t "app.short_name" %>
+    </span>
+    <span class="logo-lg">
+      <b><%= t "app.char" %></b><%= t "app.short_name" %>
+    </span>
+  <% end %>
+  <nav class="navbar navbar-static-top">
+    <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+      <span class="sr-only"><%= t "header.toggle_navition" %></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </a>
+    <div class="navbar-custom-menu">
+      <ul class="nav navbar-nav">
+        <li class="dropdown messages-menu">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <i class="fa fa-user-plus"></i>
+            <span class="label label-success">4</span>
+          </a>
+          <ul class="dropdown-menu">
+            <li class="header">
+              <%= t "chat.header.you_have" %>
+              {{ 4 }}
+              <%= t "chat.header.contact_request" %></li>
+            <li>
+              <ul class="menu">
+                <li>
+                  <a href="#">
+                    <h4>
+                      <%= current_user.username %>
+                    </h4>
+                    <p><%= current_user.email %></p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="footer"><a href="#"><%= t "chat.header.contact_management" %></a></li>
+          </ul>
+        </li>
+        <li class="dropdown notifications-menu">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <i class="fa fa-bell-o"></i>
+            <span class="label label-warning">10</span>
+          </a>
+          <ul class="dropdown-menu">
+            <li class="header">
+              <%= t "chat.header.you_have" %>
+               {{ 10 }}
+              <%= t "chat.header.notifications" %>
+            </li>
+            <li>
+              <ul class="menu">
+                <li>
+                  <a href="#">
+                    <i class="fa fa-users text-aqua"></i>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="footer"><a href="#"><%= t "chat.header.view_all" %></a></li>
+          </ul>
+        </li>
+        <li class="dropdown user user-menu">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <span class="hidden-xs"><%= current_user.email %></span>
+            <span class="hidden-md"><i class="fa fa-gears"></i></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li class="user-header">
+              <img src="https://t4.ftcdn.net/jpg/01/14/32/23/160_F_114322373_YVmRgqPXptm6wif90TnrN04mVVW5yLnM.jpg"
+                class="img-circle" alt="User Image">
+              <p>
+                <%= current_user.email %>
+                <small><%= t ".member_since" %> <%= current_user.created_at %></small>
+              </p>
+            </li>
+            <li class="user-footer">
+              <a href="#" class="btn btn-default btn-block btn-flat">
+                <i class="fa fa-fw fa-vcard"></i>
+                <%= t "chat.header.profile" %>
+              </a>
+              <%= link_to destroy_user_session_path,
+                method: :delete, class: "btn btn-default btn-flat btn-block" do %>
+                <i class="fa fa-fw fa-sign-out"></i>
+                <%= t "header.logout" %>
+              <% end %>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>

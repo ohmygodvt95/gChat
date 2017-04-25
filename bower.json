@@ -20,6 +20,7 @@
     "angular-actioncable": "^1.1.1",
     "AdminLTE": "admin-lte#^2.3.11",
     "bootstrap": "^3.3.7",
-    "font-awesome": "fontawesome#^4.7.0"
+    "font-awesome": "fontawesome#^4.7.0",
+    "angular-modal-service": "^0.11.1"
   }
 }
