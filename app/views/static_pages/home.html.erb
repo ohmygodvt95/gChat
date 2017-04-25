@@ -1,0 +1,9 @@
+<% if user_signed_in? %>
+  <h1 class="text-center">
+    <%= t "pages.home.chat_now" %>
+  </h1>
+<% else %>
+  <h1 class="text-center">
+    <%= t "pages.home.login_now" %>
+  </h1>
+<% end %>

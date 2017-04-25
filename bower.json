@@ -1,0 +1,25 @@
+{
+  "name": "gChat",
+  "homepage": "https://github.com/ohmygodvt95/gChat",
+  "authors": [
+    "ThienLV <ohmygodvt95@gmail.com>"
+  ],
+  "description": "GChat project - Framgia",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor/assets/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-ui-router": "^0.4.2",
+    "angular-actioncable": "^1.1.1",
+    "AdminLTE": "admin-lte#^2.3.11",
+    "bootstrap": "^3.3.7",
+    "font-awesome": "fontawesome#^4.7.0"
+  }
+}
