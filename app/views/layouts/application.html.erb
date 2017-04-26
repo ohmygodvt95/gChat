@@ -5,13 +5,12 @@
       <%= t "app.name" %> | <%= t "app.slogan" %>
     </title>
     <%= csrf_meta_tags %>
-    <%= stylesheet_link_tag "application", media: "all",
-      "data-turbolinks-track": "reload" %>
+    <%= stylesheet_link_tag "static_pages", media: "all" %>
   </head>
 
   <body>
     <%= render "layouts/header" %>
     <%= yield %>
-    <%= javascript_include_tag "application" %>
+    <%= javascript_include_tag "static_pages" %>
   </body>
 </html>

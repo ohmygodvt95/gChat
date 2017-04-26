@@ -11,7 +11,31 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery_ujs
 //= require bootstrap/dist/js/bootstrap.min
-//= require turbolinks
-//= require_tree .
+//= require jquery_ujs
+//= require AdminLTE/plugins/slimScroll/jquery.slimscroll.min
+//= require AdminLTE/dist/js/app.min
+//= require angular
+//= require angular-ui-router
+//= require angular-websocket
+//= require angular-actioncable
+//= require angular-modal-service/dst/angular-modal-service.min
+//= require_self
+//= require_tree ./controllers
+//= require_tree ./services
+
+var app = angular.module('GChat', ['ngActionCable', 'ui.router', 'angularModalService']);
+app.basePath = $('meta[name="base"]').attr('content');
+app
+  .config(function ($stateProvider, $urlRouterProvider) {
+    $stateProvider
+      .state('welcome', {
+        url: '/welcome',
+        views: {
+          'main': {
+            templateUrl: 'templates/welcome.html'
+          }
+        }
+      });
+    $urlRouterProvider.otherwise('/welcome');
+  });
