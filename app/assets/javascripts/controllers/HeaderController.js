@@ -1,4 +1,18 @@
-app.controller('HeaderController', function ($scope, ModalService) {
+app.controller('HeaderController', function ($scope, ModalService, $rootScope,
+  ActionCableChannel, Contact, Room) {
+
+
+
+  function update_new_request_contact() {
+    Contact.request(0).then(function (data) {
+      $rootScope.requests = data
+    });
+  }
+  function update_list_contacts() {
+    Room.index().then(function (data) {
+      $rootScope.rooms = data.data;
+    });
+  }
 
   $scope.openContactModal = function () {
     ModalService.showModal({
@@ -6,9 +20,9 @@ app.controller('HeaderController', function ($scope, ModalService) {
       controller: 'ContactController',
       backdrop: 'static',
       keyboard: false
-    }).then(function(modal) {
+    }).then(function (modal) {
       modal.element.modal();
-      modal.element.on('hidden.bs.modal', function() {
+      modal.element.on('hidden.bs.modal', function () {
         $('.modal').remove();
         $('.modal-backdrop').remove();
       });
@@ -19,13 +33,36 @@ app.controller('HeaderController', function ($scope, ModalService) {
     ModalService.showModal({
       templateUrl: 'templates/group.html',
       controller: 'GroupController'
-    }).then(function(modal) {
+    }).then(function (modal) {
       modal.element.modal();
-      modal.element.on('hidden.bs.modal', function() {
+      modal.element.on('hidden.bs.modal', function () {
         $('.modal').remove();
         $('.modal-backdrop').remove();
       });
     });
   };
 
+  var consumer = new ActionCableChannel('NotifyChannel');
+
+  var callback = function (response) {
+    if(response.notify.type === 'new_request_contact'){
+      update_new_request_contact();
+    }
+    else if(response.notify.type === 'update_list_rooms'){
+      update_list_contacts();
+    }
+  };
+
+  consumer.subscribe(callback).then(function () {
+    $scope.$on("$destroy", function () {
+      consumer.unsubscribe().then(function () {
+      });
+    });
+  });
+
+  function init(){
+    update_new_request_contact();
+  }
+
+  init();
 });
