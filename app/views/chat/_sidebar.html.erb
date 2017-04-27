@@ -12,9 +12,9 @@
       </div>
     </form>
     <ul class="sidebar-menu">
-      <li>
-        <a href="#">
-          <i class="fa fa-circle-o text-red"></i><span>a</span>
+      <li ng-repeat="room in rooms">
+        <a href="#{{ room.id }}">
+          <i class="fa fa-circle-o text-red"></i><span>{{ room.name }}</span>
         </a>
       </li>
     </ul>

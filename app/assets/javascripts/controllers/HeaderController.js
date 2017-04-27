@@ -11,6 +11,15 @@ app.controller('HeaderController', function ($scope, ModalService) {
     });
   };
 
-  // Init controller
+  $scope.openGroupModal = function () {
+    ModalService.showModal({
+      templateUrl: 'templates/group.html',
+      controller: 'GroupController'
+    }).then(function(modal) {
+      modal.element.modal();
+      modal.close.then(function(result) {
+      });
+    });
+  };
 
 });

@@ -79,9 +79,10 @@ ActiveRecord::Schema.define(version: 20170424154019) do
     t.integer  "user_id"
     t.string   "name"
     t.string   "avatar"
-    t.string   "room_type",  default: "private"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.string   "room_type",   default: "private"
+    t.text     "description"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.index ["user_id"], name: "index_rooms_on_user_id"
   end
 
@@ -100,6 +101,7 @@ ActiveRecord::Schema.define(version: 20170424154019) do
     t.integer  "user_id"
     t.integer  "room_id"
     t.integer  "last_message", default: 0
+    t.boolean  "is_admin",     default: false
     t.datetime "focus_at"
     t.boolean  "is_accept",    default: false
     t.datetime "created_at",                   null: false

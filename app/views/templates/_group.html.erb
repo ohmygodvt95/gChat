@@ -1,0 +1,30 @@
+<script type="text/ng-template" id="templates/group.html">
+  <div class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close"
+            data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">
+            <i class="fa fa-wechat"></i>
+            <%= t "rooms.create_group" %>
+          </h4>
+        </div>
+        <div class="modal-body">
+          <h3><%= t "rooms.group_name" %></h3>
+          <input type="text" required title="Name" ng-model="room.name"
+            class="form-control">
+          <h3><%= t "rooms.group_description" %></h3>
+          <textarea title="Description" class="form-control" ng-model="room.description">
+          </textarea>
+          <hr>
+          <button class="btn btn-primary center-block" ng-click="create()">
+            <%= t "rooms.create" %>
+          </button>
+          <hr>
+          <h5 class="text-danger text-center">{{ message }}</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</script>
