@@ -15,11 +15,13 @@
 //= require jquery_ujs
 //= require AdminLTE/plugins/slimScroll/jquery.slimscroll.min
 //= require AdminLTE/dist/js/app.min
+//= require lodash/dist/lodash.min
 //= require angular
+//= require angular-animate
 //= require angular-ui-router
 //= require angular-websocket
 //= require angular-actioncable
-//= require angular-modal-service/dst/angular-modal-service.min
+//= require angular-modal-service/dst/angular-modal-service
 //= require_self
 //= require_tree ./controllers
 //= require_tree ./services

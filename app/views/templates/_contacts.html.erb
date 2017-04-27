@@ -1,0 +1,192 @@
+<script type="text/ng-template" id="templates/contacts.html">
+  <div class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close"
+            data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">
+            <%= t "contacts.contacts" %>
+            <span class="text-danger">{{ message }}</span>
+          </h4>
+        </div>
+        <div class="modal-body">
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="active">
+              <a data-target="#tab1" role="tab" data-toggle="tab">
+                <%= t "contacts.add_contact" %>
+              </a>
+            </li>
+            <li ng-if="requests.total_count > 0">
+              <a data-target="#tab2" role="tab" data-toggle="tab">
+                <%= t "contacts.request_contact" %>
+                <span class="badge">{{ requests.total_count }}</span>
+              </a>
+            </li>
+            <li>
+              <a data-target="#tab3" role="tab" data-toggle="tab">
+                <%= t "contacts.my_contact" %>
+                <span class="badge">{{ myContacts.total_count }}</span>
+              </a>
+            </li>
+          </ul>
+          <div class="tab-content">
+            <div class="active tab-pane fade in" id="tab1">
+              <hr>
+              <div class="row">
+                <div class="col-sm-8 col-sm-offset-2">
+                  <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for..."
+                      ng-model="query">
+                    <span class="input-group-btn">
+                      <button class="btn btn-secondary btn-primary"
+                        type="button" ng-click="search()">
+                        <i class="fa fa-fw fa-search"></i>
+                      </button>
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-6 list-contact border-left">
+                  <div class="row" ng-if="searchResult.total_pages > 1">
+                    <div class="col-sm-12">
+                      <div>
+                        <button class="btn btn-flat btn-sm"
+                          ng-click="page(searchResult.prev_page, 'search')">
+                          <i class="fa fa-arrow-left"></i>
+                        </button>
+                        ({{ searchResult.current_page }} / {{ searchResult.total_pages }})
+                        <button class="btn btn-flat btn-sm"
+                          ng-click="page(searchResult.next_page, 'search')">
+                          <i class="fa fa-arrow-right"></i>
+                        </button>
+                      </div>
+                      <hr>
+                    </div>
+                  </div>
+                  <ul>
+                    <li ng-repeat="item in searchResult.data"
+                      ng-click="previewContact(item, 'search')">
+                      <img src="https://t4.ftcdn.net/jpg/01/14/32/23/160_F_114322373_YVmRgqPXptm6wif90TnrN04mVVW5yLnM.jpg" alt="">
+                      <div>
+                        <b>{{ item.username }}</b>
+                        <br>
+                        {{ item.email }}
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-sm-6 preview" ng-if="previewSearchItem != null">
+                  <img src="https://t4.ftcdn.net/jpg/01/14/32/23/160_F_114322373_YVmRgqPXptm6wif90TnrN04mVVW5yLnM.jpg"
+                    class="img-responsive center-block">
+                  <hr>
+                  <h3 class="text-center">{{ previewSearchItem.username }}</h3>
+                  <hr>
+                  <button class="btn btn-primary center-block" ng-click="addContact(previewSearchItem)">
+                    <%= t "contacts.add_contact" %>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="tab2">
+
+              <h3 class="text-center">
+                <%= t "contacts.my_contact" %>
+              </h3>
+              <hr>
+              <div class="row">
+                <div class="col-sm-6 list-contact border-left">
+                  <div class="row" ng-if="requests.total_pages > 1">
+                    <div class="col-sm-12">
+                      <div>
+                        <button class="btn btn-flat btn-sm"
+                                ng-click="page(requests.prev_page, 'request')">
+                          <i class="fa fa-arrow-left"></i>
+                        </button>
+                        ({{ requests.current_page }} / {{ requests.total_pages }})
+                        <button class="btn btn-flat btn-sm"
+                                ng-click="page(requests.next_page, 'request')">
+                          <i class="fa fa-arrow-right"></i>
+                        </button>
+                      </div>
+                      <hr>
+                    </div>
+                  </div>
+                  <ul>
+                    <li ng-repeat="item in requests.data" ng-click="previewContact(item, 'request')">
+                      <img src="https://t4.ftcdn.net/jpg/01/14/32/23/160_F_114322373_YVmRgqPXptm6wif90TnrN04mVVW5yLnM.jpg" alt="">
+                      <div>
+                        <b>{{ item.username }}</b>
+                        <br>
+                        {{ item.email }}
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-sm-6 preview" ng-if="previewRequestItem != null">
+                  <img src="https://t4.ftcdn.net/jpg/01/14/32/23/160_F_114322373_YVmRgqPXptm6wif90TnrN04mVVW5yLnM.jpg"
+                       class="img-responsive center-block">
+                  <hr>
+                  <h3 class="text-center">{{ previewRequestItem.username }}</h3>
+                  <hr>
+                  <button class="btn btn-success center-block"
+                    ng-click="accept(previewRequestItem)">
+                    <%= t "contacts.accept_contact" %>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="tab3">
+              <h3 class="text-center">
+                <%= t "contacts.my_contact" %>
+              </h3>
+              <hr>
+              <div class="row">
+                <div class="col-sm-6 list-contact border-left">
+                  <div class="row" ng-if="myContacts.total_pages > 1">
+                    <div class="col-sm-12">
+                      <div>
+                        <button class="btn btn-flat btn-sm"
+                                ng-click="page(myContacts.prev_page, 'my_contact')">
+                          <i class="fa fa-arrow-left"></i>
+                        </button>
+                        ({{ myContacts.current_page }} / {{ myContacts.total_pages }})
+                        <button class="btn btn-flat btn-sm"
+                                ng-click="page(myContacts.next_page, 'my_contact')">
+                          <i class="fa fa-arrow-right"></i>
+                        </button>
+                      </div>
+                      <hr>
+                    </div>
+                  </div>
+                  <ul>
+                    <li ng-repeat="item in myContacts.data" ng-click="previewContact(item, 'my_contact')">
+                      <img src="https://t4.ftcdn.net/jpg/01/14/32/23/160_F_114322373_YVmRgqPXptm6wif90TnrN04mVVW5yLnM.jpg" alt="">
+                      <div>
+                        <b>{{ item.username }}</b>
+                        <br>
+                        {{ item.email }}
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-sm-6 preview" ng-if="previewMyContactItem != null">
+                  <img src="https://t4.ftcdn.net/jpg/01/14/32/23/160_F_114322373_YVmRgqPXptm6wif90TnrN04mVVW5yLnM.jpg"
+                    class="img-responsive center-block">
+                  <hr>
+                  <h3 class="text-center">{{ previewMyContactItem.username }}</h3>
+                  <hr>
+                  <button class="btn btn-danger center-block" ng-click="destroy(previewMyContactItem)">
+                    <%= t "contacts.destroy_contact" %>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</script>

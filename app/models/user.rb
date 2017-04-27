@@ -14,4 +14,24 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :trackable, :validatable
+
+  scope :search, ->(data){where("email like ?", "%#{data[:query]}%")
+    .where("id != ?", data[:user].id).where
+    .not id: data[:user].contacts(data[:user].id, [true, false]).map(&:id)}
+
+  def contacts uid = self.id, accept = true
+    contacts = Relationship
+      .where(user_request_id: uid)
+      .or(Relationship.where user_receiver_id: uid)
+      .where(is_accept: accept)
+    users = []
+    contacts.each do |contact|
+      if contact.user_request_id == self.id
+        users << contact.user_receiver
+      else
+        users << contact.user_request
+      end
+    end
+    users
+  end
 end

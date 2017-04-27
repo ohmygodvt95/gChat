@@ -12,7 +12,7 @@ gem "jbuilder", "~> 2.5"
 gem "redis", "~> 3.0"
 gem "devise"
 gem "carrierwave", "~> 1.0"
-
+gem "kaminari"
 group :development, :test do
   gem "byebug", platform: :mri
 end

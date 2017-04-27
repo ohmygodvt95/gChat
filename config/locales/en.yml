@@ -28,3 +28,18 @@ en:
       view_all: View all
       member_since: Member since
       profile: Profile
+  contacts:
+    message:
+      request: You have sent an invitation to contact %{name}
+      request_failure: Can not send invitations to contact %{name}
+      request_accept: You have accept contact %{name}
+      request_accept_failure: Can not accept contact %{name}
+      user_not_found: Account does not exist!
+      contact_not_found: Contact does not exist!
+      contact_destroy: Contact has been destroy
+    contacts: Contacts
+    add_contact: Add contact
+    my_contact: My contact
+    request_contact: Request contact
+    destroy_contact: Destroy this contact
+    accept_contact: Accept this contact
