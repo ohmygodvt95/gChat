@@ -4,6 +4,7 @@ class CreateRelationships < ActiveRecord::Migration[5.0]
       t.references :user_request, index: true, foreign_key: {to_table: :users}
       t.references :user_receiver, index: true, foreign_key: {to_table: :users}
       t.boolean :is_accept, default: false
+      t.integer :private_room_id, null: true
       t.timestamps
     end
   end

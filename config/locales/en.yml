@@ -32,11 +32,12 @@ en:
     message:
       request: You have sent an invitation to contact %{name}
       request_failure: Can not send invitations to contact %{name}
-      request_accept: You have accept contact %{name}
+      request_accept: You have accept contact from %{name}
       request_accept_failure: Can not accept contact %{name}
       user_not_found: Account does not exist!
       contact_not_found: Contact does not exist!
       contact_destroy: Contact has been destroy
+      contact_already: Contact has exist please check your list contacts again.
     contacts: Contacts
     add_contact: Add contact
     my_contact: My contact
