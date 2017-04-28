@@ -4,6 +4,7 @@ class CreateUserRooms < ActiveRecord::Migration[5.0]
       t.references :user, foreign_key: true
       t.references :room, foreign_key: true
       t.integer :last_message, default: 0
+      t.boolean :is_admin, default: false
       t.datetime :focus_at
       t.boolean :is_accept, default: false
       t.timestamps

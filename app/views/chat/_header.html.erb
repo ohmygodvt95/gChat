@@ -16,7 +16,15 @@
     </a>
     <div class="navbar-custom-menu">
       <ul class="nav navbar-nav">
-        <li class="dropdown messages-menu">
+        <li class="messages-menu" title="Create a group chat">
+          <a ng-click="openGroupModal()">
+            <i class="fa fa-wechat"></i>
+            <span class="label label-primary">
+              <i class="fa fa-plus"></i>
+            </span>
+          </a>
+        </li>
+        <li class="messages-menu">
           <a ng-click="openContactModal()">
             <i class="fa fa-user-plus"></i>
             <span class="label label-success">4</span>

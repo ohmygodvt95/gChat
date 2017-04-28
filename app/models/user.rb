@@ -19,6 +19,9 @@ class User < ApplicationRecord
     .where("id != ?", data[:user].id).where
     .not id: data[:user].contacts(data[:user].id, [true, false]).map(&:id)}
 
+  scope :user_for_private_room,
+    ->(user_id){where.not(id: user_id).first}
+
   def contacts uid = self.id, accept = true
     contacts = Relationship
       .where(user_request_id: uid)

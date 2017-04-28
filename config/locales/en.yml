@@ -43,3 +43,12 @@ en:
     request_contact: Request contact
     destroy_contact: Destroy this contact
     accept_contact: Accept this contact
+  rooms:
+    message:
+      create_success: You have been created %{name} group chat
+      create_failure: Can't create group chat
+    room_not_found: Group chat does not exist
+    create_group: Create a new group chat
+    group_name: Group name
+    group_description: Group description
+    create: Create
