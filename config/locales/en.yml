@@ -53,3 +53,5 @@ en:
     group_name: Group name
     group_description: Group description
     create: Create
+    description: Description
+    create_message_failure: Message can't create

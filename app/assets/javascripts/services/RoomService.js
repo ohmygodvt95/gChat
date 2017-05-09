@@ -18,4 +18,15 @@ app.service('Room', function ($http, $q) {
       });
     return deferred.promise;
   };
+  
+  this.show = function (room_id) {
+    var deferred = $q.defer();
+    var promise = $http.get(app.basePath + 'rooms/' + room_id)
+      .then(function (response) {
+        deferred.resolve(response);
+      }, function(response){
+        deferred.resolve(response);
+      });
+    return deferred.promise;
+  }
 });

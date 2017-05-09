@@ -8,6 +8,9 @@ class Api::V1::RoomsController < ApplicationController
     @rooms = @rooms.as_json user: current_user
   end
 
+  def show
+  end
+
   def create
     @room = current_user.my_created_rooms.new new_rooms_params
     if @room.save
@@ -31,7 +34,6 @@ class Api::V1::RoomsController < ApplicationController
   end
 
   protected
-  private
   def find_room
     @room = current_user.rooms.find_by id: params[:id]
     unless @room

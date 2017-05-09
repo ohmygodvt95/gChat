@@ -1,0 +1,55 @@
+<script type="text/ng-template" id="templates/room.html">
+  <section class="content room">
+    <div class="box">
+      <div class="box-header with-border">
+        <h3 class="box-title">{{ room.name || 'Loading...' }}</h3>
+      </div>
+      <div class="row">
+        <div class="col-sm-9">
+          <div class="box-body" id="messages">
+            <ul class="messages">
+              <li ng-repeat="message in messages">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <hr ng-if="message.user.id !== messages[$index -1].user.id">
+                    <div class="row message-content">
+                      <div class="col-sm-1">
+                        <img src="https://appdata.chatwork.com/avatar/769/769223.rsz.jpg" alt=""
+                          ng-if="message.user.id !== messages[$index -1].user.id"
+                          class="img-responsive avatar center-block">
+                      </div>
+                      <div class="col-sm-10">
+                        <div ng-if="message.user.id !== messages[$index -1].user.id" class="userinfo">
+                          <a href="#">
+                            <b>{{ message.user.username || 'Loading..' }}</b>
+                          </a>
+                          <br>
+                        </div>
+                        <div>
+                          {{ message.raw_content }}
+                        </div>
+                      </div>
+                      <div class="col-sm-1 time">
+                        <small>
+                          <em>{{ message.created_at.substr(11, 5); }}</em>
+                        </small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="box-footer">
+            <textarea name="" id="" cols="30" rows="2" class="form-control"
+              title="text" ng-model="inputText"></textarea>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <h4><%= t "rooms.group_description" %></h4>
+          <hr>
+        </div>
+      </div>
+    </div>
+  </section>
+</script>
