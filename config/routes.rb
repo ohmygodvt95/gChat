@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  mount ActionCable.server => "/cable"
+
   root "static_pages#show", act: "home"
   get "/pages/:act" => "static_pages#show"
 

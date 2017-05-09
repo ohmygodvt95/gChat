@@ -1,4 +1,6 @@
 class Room < ApplicationRecord
+  before_destroy {PrivateRoomDestroyBoardcastJob.perform_now self}
+
   belongs_to :user
 
   has_many :user_rooms, dependent: :destroy

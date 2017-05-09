@@ -27,7 +27,9 @@
         <li class="messages-menu">
           <a ng-click="openContactModal()">
             <i class="fa fa-user-plus"></i>
-            <span class="label label-success">4</span>
+            <span class="label label-success" ng-if="requests.total_count > 0">
+              {{ requests.total_count }}
+            </span>
           </a>
         </li>
         <li class="dropdown notifications-menu">

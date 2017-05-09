@@ -1,4 +1,4 @@
-app.controller('ContactController', function ($scope, Contact, $timeout) {
+app.controller('ContactController', function ($scope, Contact, $timeout, $rootScope) {
   /**
    * Init controller
    */
@@ -8,7 +8,7 @@ app.controller('ContactController', function ($scope, Contact, $timeout) {
       $scope.myContacts = data;
     });
     Contact.request(0).then(function (data) {
-      $scope.requests = data;
+      $rootScope.requests = data;
     });
   }
 
@@ -65,7 +65,7 @@ app.controller('ContactController', function ($scope, Contact, $timeout) {
       showMessage(data.message);
       $scope.previewRequestItem = null;
       Contact.request(0).then(function (data) {
-        $scope.requests = data;
+        $rootScope.requests = data;
       });
       Contact.index(0).then(function (data) {
         $scope.myContacts = data;
@@ -86,7 +86,7 @@ app.controller('ContactController', function ($scope, Contact, $timeout) {
     }
     else if(action === 'request' && page !== null){
       Contact.request(page).then(function (data) {
-        $scope.requests = data;
+        $rootScope.requests = data;
       });
     }
   };

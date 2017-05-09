@@ -1,4 +1,5 @@
 class Relationship < ApplicationRecord
+  after_create_commit :notify_new_request_contact
   before_save :create_private_room, if: :is_accept_changed?
   after_destroy :destroy_private_room
 
@@ -23,5 +24,9 @@ class Relationship < ApplicationRecord
   def destroy_private_room
     room = Room.find_by id: self.private_room_id
     room.destroy
+  end
+
+  def notify_new_request_contact
+    RequestContactBoardcastJob.perform_now self
   end
 end
