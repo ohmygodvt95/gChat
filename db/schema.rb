@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20170424154019) do
     t.integer  "user_request_id"
     t.integer  "user_receiver_id"
     t.boolean  "is_accept",        default: false
+    t.integer  "private_room_id"
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
     t.index ["user_receiver_id"], name: "index_relationships_on_user_receiver_id"

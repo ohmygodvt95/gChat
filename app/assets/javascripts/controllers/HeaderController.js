@@ -3,10 +3,14 @@ app.controller('HeaderController', function ($scope, ModalService) {
   $scope.openContactModal = function () {
     ModalService.showModal({
       templateUrl: 'templates/contacts.html',
-      controller: 'ContactController'
+      controller: 'ContactController',
+      backdrop: 'static',
+      keyboard: false
     }).then(function(modal) {
       modal.element.modal();
-      modal.close.then(function(result) {
+      modal.element.on('hidden.bs.modal', function() {
+        $('.modal').remove();
+        $('.modal-backdrop').remove();
       });
     });
   };
@@ -17,7 +21,9 @@ app.controller('HeaderController', function ($scope, ModalService) {
       controller: 'GroupController'
     }).then(function(modal) {
       modal.element.modal();
-      modal.close.then(function(result) {
+      modal.element.on('hidden.bs.modal', function() {
+        $('.modal').remove();
+        $('.modal-backdrop').remove();
       });
     });
   };

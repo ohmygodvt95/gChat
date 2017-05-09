@@ -16,14 +16,19 @@ class Api::V1::ContactsController < ApplicationController
   end
 
   def create
-    contact = Relationship.new new_contact_params
-      .merge user_request_id: current_user.id
-    if contact.save
-      @message = t "contacts.message.request",
-        name: contact.user_receiver.username
+    if Relationship.exist_contact([params[:contact][:user_receiver_id],
+      current_user.id]).present?
+      @message = t "contacts.message.contact_already"
     else
-      @message = t "contacts.message.request_failure",
-        name: contact.user_receiver.username
+      contact = Relationship.new new_contact_params
+        .merge user_request_id: current_user.id
+      if contact.save
+        @message = t "contacts.message.request",
+          name: contact.user_receiver.username
+      else
+        @message = t "contacts.message.request_failure",
+          name: contact.user_receiver.username
+      end
     end
   end
 
