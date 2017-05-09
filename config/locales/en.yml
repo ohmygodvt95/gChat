@@ -55,3 +55,4 @@ en:
     create: Create
     description: Description
     create_message_failure: Message can't create
+    no_more: No more messages!

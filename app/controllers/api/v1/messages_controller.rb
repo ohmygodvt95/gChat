@@ -1,7 +1,16 @@
 class Api::V1::MessagesController < ApplicationController
   skip_before_action :verify_authenticity_token
   before_action :authenticate_user!
-  before_action :find_room, except: [:index, :new, :edit]
+  before_action :find_room, except: [:new, :edit]
+
+  def index
+    from = params[:from].to_i
+    if from == 0
+      @messages = @room.messages.order_by_id_desc
+    else
+      @messages = @room.messages.from_by_id
+    end
+  end
 
   def create
     @message = @room.messages.new new_message_params

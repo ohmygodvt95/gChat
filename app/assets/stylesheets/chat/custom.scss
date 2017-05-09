@@ -3,6 +3,8 @@ $black: #000;
 $white: #FFF;
 $fa: #fafafa;
 $dodgerblue: #1e90ff;
+$targetmsg: #357CA5;
+$hovermsg: #00a7d0;
 
 .list-contact ul {
   list-style: none;
@@ -73,6 +75,8 @@ $dodgerblue: #1e90ff;
   .avatar {
     border: 2px solid $fa;
     border-radius: 50% 50% 0;
+    height: 36px;
+    width: 36px;
   }
 
   .messages {
@@ -82,7 +86,17 @@ $dodgerblue: #1e90ff;
     li {
       padding: 0 10px;
 
-      .userinfo {
+      .load-messages{
+        transition: .25s;
+        color: $targetmsg;
+        cursor: pointer;
+      }
+
+      .load-messages:hover{
+        color: $hovermsg;
+      }
+
+      .userinfo{
         padding-bottom: 5px;
       }
 

@@ -1,9 +1,9 @@
 app.service('Message', function ($http, $q, $state) {
 
-  this.index = function (room, page) {
+  this.index = function (room, from) {
     var deferred = $q.defer();
     var promise = $http.get(app.basePath + 'rooms/' + room.id
-      + '/messages?page=' + page).then(function (response) {
+      + '/messages?from=' + from).then(function (response) {
       deferred.resolve(response.data);
     });
     return deferred.promise;
