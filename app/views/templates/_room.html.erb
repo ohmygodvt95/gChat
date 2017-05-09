@@ -4,7 +4,11 @@
       <div class="box-header with-border">
         <h3 class="box-title">{{ room.name || 'Loading...' }}</h3>
         <a class="pull-right" ng-if="room.is_admin" ui-sref="room.edit({room_id: room.id})">
-          <i class="fa fa-fw fa-cog"></i>
+          <i class="fa fa-fw fa-info-circle"></i>
+        </a>
+        <a class="pull-right" ng-if="room.is_admin && room.room_type == 'group'"
+          ui-sref="room.invite({room_id: room.id})">
+          <i class="fa fa-fw fa-user-plus"></i>
         </a>
       </div>
       <div class="row">

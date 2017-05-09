@@ -1,4 +1,4 @@
-app.controller('ContactController', function ($scope, Contact, $timeout, $rootScope) {
+app.controller('ContactController', function ($scope, Contact, toastr, $rootScope) {
   /**
    * Init controller
    */
@@ -13,10 +13,7 @@ app.controller('ContactController', function ($scope, Contact, $timeout, $rootSc
   }
 
   function showMessage(string) {
-    $scope.message = string;
-    $timeout(function () {
-      $scope.message = null;
-    }, 3000);
+    toastr.success(string);
   }
 
   $scope.search = function () {

@@ -1,0 +1,41 @@
+<script type="text/ng-template"  id="templates/invite.html">
+  <section class="content room">
+    <div class="box">
+      <div class="box-header with-border">
+        <h3 class="box-title">{{ room.name || 'Loading...' }} |
+          <%= t "rooms.invite_request" %>
+          <span class="text-danger">{{ message }}</span>
+        </h3>
+        <span class="pull-right">
+          <a ui-sref="room({room_id: room.id})">
+            <i class="fa fa-fw fa-reply "></i>
+          </a>
+        </span>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="box-body">
+            <div class="row">
+              <div class="col-sm-6 col-sm-offset-3">
+                <h4 class="text-center"><%= t "rooms.invite_by_email" %></h4>
+                <div class="input-group">
+                  <input type="email" class="form-control" placeholder="Email" ng-model="email">
+                  <span class="input-group-btn">
+                    <button class="btn btn-secondary btn-primary" type="button"
+                      ng-click="invite()" ng-disabled="email == undefined">
+                      <%= t "rooms.invite" %>
+                    </button>
+                  </span>
+                </div>
+              </div>
+              <div class="col-sm-12">
+                <hr>
+                <h4 class="text-center"><%= t "rooms.invite_from_list_contatcs" %></h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</script>
