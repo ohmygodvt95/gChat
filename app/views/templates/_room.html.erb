@@ -3,6 +3,9 @@
     <div class="box">
       <div class="box-header with-border">
         <h3 class="box-title">{{ room.name || 'Loading...' }}</h3>
+        <a class="pull-right" ng-if="room.is_admin" ui-sref="room.edit({room_id: room.id})">
+          <i class="fa fa-fw fa-cog"></i>
+        </a>
       </div>
       <div class="row">
         <div class="col-sm-9">
@@ -17,7 +20,8 @@
                   </div>
                 </div>
               </li>
-              <li ng-repeat="message in data.messages | orderBy:'id'" id="msg-{{ message.id }}" data="{{ message.id }}"
+              <li ng-repeat="message in data.messages | orderBy:'id'"
+                id="msg-{{ message.id }}" data="{{ message.id }}"
                 class="msg msg-{{ message.id }}">
                 <div class="row">
                   <div class="col-sm-12">
@@ -25,7 +29,7 @@
                     <div class="row message-content">
                       <div class="col-xs-3 col-sm-1 ">
                         <img src="https://appdata.chatwork.com/avatar/769/769223.rsz.jpg" alt=""
-                          ng-if="message.user.id !== messages[$index -1].user.id"
+                          ng-if="message.user.id !== data.messages[$index -1].user.id"
                           class="img-responsive avatar center-block">
                       </div>
                       <div class="col-xs-9 col-sm-10">
@@ -58,6 +62,9 @@
         <div class="col-sm-3">
           <h4><%= t "rooms.group_description" %></h4>
           <hr>
+          <div>
+            {{ room.description }}
+          </div>
         </div>
       </div>
     </div>

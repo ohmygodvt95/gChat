@@ -70,7 +70,6 @@ app.controller('RoomController', function ($scope, Room, $stateParams, ActionCab
   }
 
   // Action cable
-
   var consumer = new ActionCableChannel('RoomChannel', {room_id: $scope.room_id});
 
   var callback = function (response) {
@@ -79,6 +78,9 @@ app.controller('RoomController', function ($scope, Room, $stateParams, ActionCab
       $scope.data.messages.push(response.notify.message);
       $scope.data.messages = _.sortBy($scope.data.messages, ['id']);
       scrollBox();
+    }
+    else if (response.notify.type === 'update_room_info') {
+      getRoomInfo();
     }
   };
 

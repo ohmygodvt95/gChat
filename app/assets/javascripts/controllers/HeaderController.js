@@ -38,6 +38,7 @@ app.controller('HeaderController', function ($scope, ModalService, $rootScope,
       modal.element.on('hidden.bs.modal', function () {
         $('.modal').remove();
         $('.modal-backdrop').remove();
+        update_list_contacts();
       });
     });
   };

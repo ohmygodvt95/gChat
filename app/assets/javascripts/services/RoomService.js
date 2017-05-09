@@ -28,5 +28,16 @@ app.service('Room', function ($http, $q) {
         deferred.resolve(response);
       });
     return deferred.promise;
-  }
+  };
+
+  this.update = function (room) {
+    var deferred = $q.defer();
+    var promise = $http.patch(app.basePath + 'rooms/' + room.id, {room: room})
+      .then(function (response) {
+        deferred.resolve(response);
+      }, function(response){
+        deferred.resolve(response);
+      });
+    return deferred.promise;
+  };
 });
