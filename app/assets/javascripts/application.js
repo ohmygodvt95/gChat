@@ -38,6 +38,15 @@ app
             templateUrl: 'templates/welcome.html'
           }
         }
+      })
+      .state('room', {
+        url: '/{room_id: int}',
+        views: {
+          'main': {
+            templateUrl: 'templates/room.html',
+            controller: 'RoomController'
+          }
+        }
       });
     $urlRouterProvider.otherwise('/welcome');
   });
