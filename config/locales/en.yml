@@ -68,4 +68,8 @@ en:
     invite_by_email: Invite to the chat room by email
     invite_from_list_contatcs: Invite from my list contacts
     user_in_room: "%{name} is already in the chat room"
+    user_not_in_room: "%{name} is not in the chat room"
     invite_success: "You invited %{name} to the chat room"
+    leave_this_room: Leave this room
+    leave_success: You have left the chat room
+    leave_failure: You can not leave the chat room

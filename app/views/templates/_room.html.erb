@@ -3,6 +3,14 @@
     <div class="box">
       <div class="box-header with-border">
         <h3 class="box-title">{{ room.name || 'Loading...' }}</h3>
+        <span class="dropdown pull-right" ng-if="room.room_type == 'group'">
+          <a class="dropdown-toggle" type="button" data-toggle="dropdown">
+            <i class="fa fa-fw fa-cog"></i>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a ng-click="leave()"><%= t "rooms.leave_this_room" %></a></li>
+          </ul>
+        </span>
         <a class="pull-right" ng-if="room.is_admin" ui-sref="room.edit({room_id: room.id})">
           <i class="fa fa-fw fa-info-circle"></i>
         </a>
