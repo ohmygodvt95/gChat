@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       resources :rooms, except: [:new, :edit] do
         resources :messages, only: [:index, :create, :update]
         resources :invite, only: [:index, :create]
+        resource :leave, only: :destroy
       end
     end
   end

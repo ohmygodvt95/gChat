@@ -1,5 +1,5 @@
 app.controller('RoomController', function ($scope, Room, $stateParams, ActionCableChannel, Message,
-  $timeout) {
+  $timeout, $state, toastr) {
 
   $scope.room_id = $stateParams.room_id;
   $scope.canLoadMessages = true;
@@ -103,4 +103,13 @@ app.controller('RoomController', function ($scope, Room, $stateParams, ActionCab
       });
     });
   });
+
+  $scope.leave = function () {
+    Room.leave($scope.room).then(function (response) {
+      toastr.success(response.data.message);
+      $state.go('welcome');
+    }, function (response) {
+      toastr.error(response.data.message);
+    });
+  };
 });
