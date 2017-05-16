@@ -6,4 +6,8 @@ class Message < ApplicationRecord
 
   has_many :replies, dependent: :destroy
   has_many :mentions, dependent: :destroy
+
+  scope :order_by_id_desc, ->{order(id: :desc).limit Settings.msg_limit}
+  scope :from_by_id, ->(id){where("id < ?", id).order(id: :desc)
+    .limit Settings.msg_limit}
 end
