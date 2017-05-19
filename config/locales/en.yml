@@ -63,3 +63,9 @@ en:
     admin: Administrators
     members: Members
     update: Update
+    invite: Invite
+    invite_request: Invite to the chat room
+    invite_by_email: Invite to the chat room by email
+    invite_from_list_contatcs: Invite from my list contacts
+    user_in_room: "%{name} is already in the chat room"
+    invite_success: "You invited %{name} to the chat room"

@@ -22,11 +22,12 @@
 //= require angular-websocket
 //= require angular-actioncable
 //= require angular-modal-service/dst/angular-modal-service
+//= require angular-toastr/dist/angular-toastr.tpls.min
 //= require_self
 //= require_tree ./controllers
 //= require_tree ./services
 
-var app = angular.module('GChat', ['ngActionCable', 'ui.router', 'angularModalService']);
+var app = angular.module('GChat', ['ngActionCable', 'ui.router', 'angularModalService', 'toastr']);
 app.basePath = $('meta[name="base"]').attr('content');
 app
   .config(function ($stateProvider, $urlRouterProvider) {
@@ -54,6 +55,15 @@ app
           'main@': {
             templateUrl: 'templates/roomedit.html',
             controller: 'RoomInfoController'
+          }
+        }
+      })
+      .state('room.invite', {
+        url: '/invite',
+        views: {
+          'main@': {
+            templateUrl: 'templates/invite.html',
+            controller: 'InviteController'
           }
         }
       });
