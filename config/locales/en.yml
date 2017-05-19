@@ -48,6 +48,10 @@ en:
     message:
       create_success: You have been created %{name} group chat
       create_failure: Can't create group chat
+      update_success: You have been updated %{name} group chat info
+      update_failure: Can't update group chat info
+      destroy_success: You have been destroyed group chat
+      destroy_failure: You can't destroy group chat
     room_not_found: Group chat does not exist
     create_group: Create a new group chat
     group_name: Group name
@@ -56,3 +60,6 @@ en:
     description: Description
     create_message_failure: Message can't create
     no_more: No more messages!
+    admin: Administrators
+    members: Members
+    update: Update

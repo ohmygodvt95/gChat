@@ -1,5 +1,4 @@
 app.service('Message', function ($http, $q, $state) {
-
   this.index = function (room, from) {
     var deferred = $q.defer();
     var promise = $http.get(app.basePath + 'rooms/' + room.id

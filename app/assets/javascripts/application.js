@@ -47,6 +47,15 @@ app
             controller: 'RoomController'
           }
         }
+      })
+      .state('room.edit', {
+        url: '/edit',
+        views: {
+          'main@': {
+            templateUrl: 'templates/roomedit.html',
+            controller: 'RoomInfoController'
+          }
+        }
       });
     $urlRouterProvider.otherwise('/welcome');
   });
