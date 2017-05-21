@@ -55,6 +55,9 @@ app.controller('HeaderController', function ($scope, ModalService, $rootScope,
     else if(response.notify.type === 'reply_message'){
       update_list_contacts();
     }
+    else if(response.notify.type === 'mention_user'){
+      update_list_contacts();
+    }
   };
 
   consumer.subscribe(callback).then(function () {
