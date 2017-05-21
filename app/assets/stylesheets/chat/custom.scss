@@ -5,6 +5,7 @@ $fa: #fafafa;
 $dodgerblue: #1e90ff;
 $targetmsg: #357CA5;
 $hovermsg: #00a7d0;
+$re: #66A300;
 
 .list-contact ul {
   list-style: none;
@@ -83,8 +84,35 @@ $hovermsg: #00a7d0;
     list-style: none;
     padding: 0;
 
+    li:hover {
+      .action{
+        display: block;
+      }
+    }
+
     li {
       padding: 0 10px;
+      position: relative;
+      z-index: 10;
+
+      .action {
+        background-color: $white;
+        border: 1px solid $hovermsg;
+        border-radius: 3px;
+        bottom: -8px;
+        display: none;
+        position: absolute;
+        right: 30px;
+        width: 150px;
+
+        small {
+          cursor: pointer;
+        }
+
+        small:hover {
+          color: $targetmsg;
+        }
+      }
 
       .load-messages{
         transition: .25s;
@@ -105,10 +133,25 @@ $hovermsg: #00a7d0;
         transition: 0.25s;
         border-radius: 3px;
         padding: 4px 0;
-        border: 1px solid $white;
         box-sizing: border-box;
         word-wrap: break-word;
         overflow-wrap: break-word;
+        border: 1px solid transparent;
+
+        .reply {
+          background-color: $re;
+          padding: 0 3px;
+          color: $white;
+          font-weight: bolder;
+          border-radius: 2px;
+
+          img {
+            margin-top: -3px;
+            height: 16px;
+            width: 16px;
+            border-radius: 50%;
+          }
+        }
       }
 
       .time {
@@ -133,5 +176,24 @@ $hovermsg: #00a7d0;
 .members {
   img {
     margin: 5px;
+  }
+}
+
+.sidebar-menu {
+  .box {
+    position: relative;
+    margin: 0 10px;
+    padding: 0 5px;
+    color: $black;
+    font-size: 12px;
+
+    .label {
+      position: absolute;
+      top: -10px;
+      right: -5px;
+      text-align: center;
+      font-size: 9px;
+      padding: 2px 3px;
+    }
   }
 }

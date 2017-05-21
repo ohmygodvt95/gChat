@@ -1,4 +1,6 @@
 class Reply < ApplicationRecord
+  after_create {ReplyBoardcastJob.perform_now self}
+
   belongs_to :user
   belongs_to :room
   belongs_to :message

@@ -73,3 +73,6 @@ en:
     leave_this_room: Leave this room
     leave_success: You have left the chat room
     leave_failure: You can not leave the chat room
+    reply: Reply
+    trash: Delete
+    edit: Edit
