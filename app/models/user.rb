@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+
   has_many :user_rooms, dependent: :destroy
   has_many :user_tasks, dependent: :destroy
   has_many :rooms, through: :user_rooms, dependent: :destroy
@@ -14,6 +15,8 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :trackable, :validatable
+
+  mount_uploader :avatar, AvatarUploader
 
   scope :search, ->(data){where("email like ?", "%#{data[:query]}%")
     .where("id != ?", data[:user].id).where

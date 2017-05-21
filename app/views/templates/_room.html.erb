@@ -40,14 +40,15 @@
                     <hr ng-if="message.user.id !== data.messages[$index -1].user.id">
                     <div class="row message-content">
                       <div class="col-xs-3 col-sm-1 ">
-                        <img src="https://appdata.chatwork.com/avatar/769/769223.rsz.jpg" alt=""
+                        <img ng-src="{{ message.user.avatar.thumb.url }}" alt=""
                           ng-if="message.user.id !== data.messages[$index -1].user.id"
                           class="img-responsive avatar center-block">
                       </div>
                       <div class="col-xs-9 col-sm-10">
                         <div ng-if="message.user.id !== data.messages[$index -1].user.id" class="userinfo">
-                          <a href="#">
+                          <a href="">
                             <b>{{ message.user.username || 'Loading..' }}</b>
+                            <small class="organization">{{ message.user.organization }}</small>
                           </a>
                           <br>
                         </div>
