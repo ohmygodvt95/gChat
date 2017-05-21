@@ -16,6 +16,7 @@ Rails.application.routes.draw do
         end
         resources :invite, only: [:index, :create]
         resource :leave, only: :destroy
+        resource :user_rooms, only: :update
       end
     end
   end

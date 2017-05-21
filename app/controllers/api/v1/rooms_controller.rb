@@ -4,7 +4,7 @@ class Api::V1::RoomsController < ApplicationController
   before_action :find_room, only: [:show, :update, :destroy]
 
   def index
-    @rooms =  current_user.rooms.order UserRoom.table_name + ".updated_at DESC"
+    @rooms =  current_user.rooms.order UserRoom.table_name + ".focus_at DESC"
     @rooms = @rooms.as_json user: current_user
   end
 

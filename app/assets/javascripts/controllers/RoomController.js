@@ -1,5 +1,5 @@
 app.controller('RoomController', function ($scope, Room, $stateParams, ActionCableChannel, Message,
-  $timeout, $state, toastr, $sce, ModalService, $rootScope, Reply, Mention) {
+  $timeout, $state, toastr, $sce, ModalService, $rootScope, Reply, Mention, UserRoom) {
   $scope.inputText = '';
   $scope.room_id = $stateParams.room_id;
   $scope.canLoadMessages = true;
@@ -215,5 +215,9 @@ app.controller('RoomController', function ($scope, Room, $stateParams, ActionCab
         });
       });
     }
+  };
+
+  $scope.updateUserRoom = function () {
+    UserRoom.update($scope.room);
   };
 });
