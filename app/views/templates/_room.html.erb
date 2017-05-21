@@ -81,15 +81,19 @@
             </ul>
           </div>
           <div class="box-footer">
-            <textarea name="" id="" cols="30" rows="2" class="form-control"
-              title="text" ng-model="inputText"></textarea>
+            <%= render "templates/editor" %>
           </div>
         </div>
         <div class="col-sm-3">
           <h4><%= t "rooms.group_description" %></h4>
           <hr>
-          <div>
+          <div class="description">
             {{ room.description }}
+          </div>
+          <hr>
+          <h4><%= t "rooms.tasks" %></h4>
+          <hr>
+          <div class="tasks">
           </div>
         </div>
       </div>

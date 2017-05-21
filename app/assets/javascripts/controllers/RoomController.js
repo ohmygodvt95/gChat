@@ -1,5 +1,5 @@
 app.controller('RoomController', function ($scope, Room, $stateParams, ActionCableChannel, Message,
-  $timeout, $state, toastr, $sce) {
+  $timeout, $state, toastr, $sce, ModalService) {
   $scope.inputText = '';
   $scope.room_id = $stateParams.room_id;
   $scope.canLoadMessages = true;
@@ -122,5 +122,26 @@ app.controller('RoomController', function ($scope, Room, $stateParams, ActionCab
 
   $scope.convert = function (string) {
     return $sce.trustAsHtml(string);
+  };
+
+  $scope.mention = function () {
+    ModalService.showModal({
+      templateUrl: 'templates/mention.html',
+      controller: 'MentionController',
+      inputs: {
+        room_id: $scope.room_id
+      }
+    }).then(function (modal) {
+      modal.element.modal();
+      modal.close.then(function(result) {
+        $('.modal').remove();
+        $('.modal-backdrop').remove();
+        if(result){
+          result.map(function (user) {
+            $scope.inputText += '@mention:' + user.id + ' ' + user.username + '\n';
+          });
+        }
+      });
+    });
   };
 });

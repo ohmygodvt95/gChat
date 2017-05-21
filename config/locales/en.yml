@@ -76,3 +76,7 @@ en:
     reply: Reply
     trash: Delete
     edit: Edit
+    re: RE
+    me: ME
+    mention_desc: "ME: Specify who you're mention"
+    tasks: My tasks
