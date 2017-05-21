@@ -8,6 +8,16 @@ app.service('Message', function ($http, $q, $state) {
     return deferred.promise;
   };
 
+  this.show = function (room, message) {
+    var deferred = $q.defer();
+    var promise = $http.get(app.basePath + 'rooms/' + room.id
+      + '/messages/' + message.id).then(function (response) {
+        console.log(response);
+      deferred.resolve(response);
+    });
+    return deferred.promise;
+  };
+
   this.create = function (room, message) {
     var deferred = $q.defer();
     var promise = $http.post(app.basePath + 'rooms/' + room.id

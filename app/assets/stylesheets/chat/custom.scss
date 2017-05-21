@@ -6,6 +6,7 @@ $dodgerblue: #1e90ff;
 $targetmsg: #357CA5;
 $hovermsg: #00a7d0;
 $re: #66A300;
+$notice: #598F00;
 
 .list-contact ul {
   list-style: none;
@@ -97,6 +98,10 @@ $re: #66A300;
   .messages {
     list-style: none;
     padding: 0;
+
+    .notice{
+      border-left: 1px solid $notice;
+    }
 
     li:hover {
       .action{
@@ -221,8 +226,24 @@ $re: #66A300;
 }
 
 .tools {
+
   .btn {
     padding: 2px 6px;
     margin-bottom: 3px;
+  }
+
+  .popover-content {
+    word-break: break-all;
+
+    span {
+      transition: .25s;
+      cursor: pointer;
+      font-size: 25px!important;
+      padding: 10px;
+    }
+
+    span:hover {
+      color: $targetmsg;
+    }
   }
 }

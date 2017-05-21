@@ -2,7 +2,7 @@ class Api::V1::MessagesController < ApplicationController
   skip_before_action :verify_authenticity_token
   before_action :authenticate_user!
   before_action :find_room, except: [:new, :edit]
-  before_action :find_message, only: [:destroy]
+  before_action :find_message, only: [:show, :destroy]
 
   def index
     from = params[:from].to_i
@@ -11,6 +11,9 @@ class Api::V1::MessagesController < ApplicationController
     else
       @messages = @room.messages.from_by_id
     end
+  end
+
+  def show
   end
 
   def create
@@ -44,6 +47,7 @@ class Api::V1::MessagesController < ApplicationController
       render json: {message: t("rooms.message_not_found")}, status: 404
     end
   end
+
   def new_message_params
     params.require(:message).permit :raw_content
   end

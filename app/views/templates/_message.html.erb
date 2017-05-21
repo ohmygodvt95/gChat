@@ -1,13 +1,14 @@
-<div class="row">
+<div class="row" ng-mouseover="isRead(message)">
   <div class="col-sm-12">
     <hr ng-if="message.user.id !== data.messages[$index -1].user.id">
     <div class="row message-content">
-      <div class="col-xs-3 col-sm-1 ">
+      <div class="col-xs-3 col-sm-1">
         <img ng-src="{{ message.user.avatar.thumb.url }}" alt=""
           ng-if="message.user.id !== data.messages[$index -1].user.id"
           class="img-responsive avatar center-block">
       </div>
-      <div class="col-xs-9 col-sm-10">
+      <div class="col-xs-9 col-sm-10
+        {{ message.replies.length + message.mentions.length > 0 ? 'notice' : '' }}">
         <div ng-if="message.user.id !== data.messages[$index -1].user.id" class="userinfo">
           <a href="">
             <b>{{ message.user.username || 'Loading..' }}</b>

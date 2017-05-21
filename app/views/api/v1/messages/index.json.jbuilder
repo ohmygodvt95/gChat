@@ -5,4 +5,4 @@ if @messages.count > 0
 else
   json.from 0
 end
-json.data @messages.as_json include: :user
+json.data @messages.as_json include: :user, user: current_user

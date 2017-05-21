@@ -13,7 +13,26 @@ class Message < ApplicationRecord
   scope :from_by_id, ->(id){where("id < ?", id).order(id: :desc)
     .limit Settings.msg_limit}
 
+  def as_json options = {}
+    json = super options
+    if options[:user]
+      json["replies"] = replies_me options[:user]
+      json["mentions"] = mentions_me options[:user]
+    else
+      json["replies"] = json["mentions"] = []
+    end
+    json
+  end
+
   protected
+  def replies_me user
+    replies.where reply_user_id: user.id, is_read: false
+  end
+
+  def mentions_me user
+    mentions.where mention_user_id: user.id, is_read: false
+  end
+
   def content_progress_after_create
     self.content = self.raw_content.gsub "\n", "<br>"
     replies = self.raw_content.scan(/@reply:(\d+)/).map!{|s| s[0].to_i}

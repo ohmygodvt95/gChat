@@ -3,6 +3,26 @@
     title="<%= t "rooms.mention_desc" %>">
     <%= t "rooms.me" %>
   </span>
+  <span class="btn btn-default" id="emoticon" data-toggle="tooltip"
+    title="<%= t "rooms.emoticons" %>" data-placement="top" data-popover-content="#a1">
+    &#128578;
+  </span>
+  <span class="btn btn-default" data-toggle="tooltip"  ng-click="newLine()"
+    title="<%= t "rooms.new_line" %>">
+    <%= t "rooms.new_line" %>
+  </span>
+  <span class="btn btn-primary pull-right" data-toggle="tooltip"  ng-click="send()"
+        title="<%= t "rooms.send" %>">
+    <i class="fa fa-fw fa-send-o"></i>
+    <%= t "rooms.send" %>
+  </span>
+
+  <!-- Content for Popover #1 -->
+  <div class="hidden" id="a1">
+    <div class="popover-body emoticons">
+      <span ng-repeat="char in emoticons track by $index" class="icon">{{ char }}</span>
+    </div>
+  </div>
 </div>
 <textarea name="" id="" cols="30" rows="2" class="form-control"
   title="text" ng-model="inputText"></textarea>

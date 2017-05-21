@@ -1,5 +1,5 @@
 app.controller('HeaderController', function ($scope, ModalService, $rootScope,
-  ActionCableChannel, Contact, Room) {
+  ActionCableChannel, Contact, Room, $interval) {
 
   $rootScope.current_user = $('#current_user').val();
 

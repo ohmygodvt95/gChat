@@ -1,5 +1,5 @@
 app.controller('RoomController', function ($scope, Room, $stateParams, ActionCableChannel, Message,
-  $timeout, $state, toastr, $sce, ModalService, $rootScope) {
+  $timeout, $state, toastr, $sce, ModalService, $rootScope, Reply, Mention) {
   $scope.inputText = '';
   $scope.room_id = $stateParams.room_id;
   $scope.canLoadMessages = true;
@@ -7,6 +7,11 @@ app.controller('RoomController', function ($scope, Room, $stateParams, ActionCab
     messages: [],
     from: 0
   };
+  $scope.emoticons = [
+    "😃", "🐻", "🍔", "⚽", "🌇", "💡", "🔣", "🎌", "💌",
+    "😀", "😁", "😂", "😃", "😄", "😅", "😆", "😉", "😊", "😋",
+    "😎", "😍", "😘", "😗", "😙", "😚", "😐", "😑", "😶", "😏",
+    "😣", "😥", "😮", "😯", "😪", "😫", "😴"];
   /**
    * Init controller
    */
@@ -23,7 +28,23 @@ app.controller('RoomController', function ($scope, Room, $stateParams, ActionCab
 
     $(document).on('click', '.reply', function () {
       alert($(this).attr('data'));
-    })
+    });
+
+    $('#emoticon').popover({
+      html : true,
+      content: function() {
+        var content = $(this).attr("data-popover-content");
+        return $(content).children(".popover-body").html();
+      },
+      title: function() {
+        var title = $(this).attr("data-popover-content");
+        return $(title).children(".popover-heading").html();
+      }
+    });
+
+    $(document).on('click', '.icon', function () {
+      $scope.inputText += $(this).text();
+    });
   }
 
   /**
@@ -77,10 +98,12 @@ app.controller('RoomController', function ($scope, Room, $stateParams, ActionCab
 
   var callback = function (response) {
     if (response.notify.type === 'new_message') {
-      $scope.inputText = '';
       $scope.data.messages.push(response.notify.message);
       $scope.data.messages = _.sortBy($scope.data.messages, ['id']);
       scrollBox();
+      Message.show($scope.room, response.notify.message).then(function (res) {
+        $scope.data.messages[_.findIndex($scope.data.messages, {id: res.data.data.id})] = res.data.data;
+      });
     }
     else if (response.notify.type === 'update_room_info') {
       getRoomInfo();
@@ -90,6 +113,16 @@ app.controller('RoomController', function ($scope, Room, $stateParams, ActionCab
     }
   };
 
+  function newMessage() {
+    $scope.inputText = $.trim($scope.inputText);
+    if($scope.inputText.length > 0){
+      Message.create($scope.room, {raw_content: $scope.inputText})
+        .then(function (data) {
+          $scope.inputText = '';
+        });
+    }
+  }
+
   consumer.subscribe(callback).then(function () {
 
     init();
@@ -97,10 +130,7 @@ app.controller('RoomController', function ($scope, Room, $stateParams, ActionCab
     $('textarea').keydown(function (event) {
       if (event.keyCode === 13) {
         event.preventDefault();
-        Message.create($scope.room, {raw_content: $scope.inputText})
-          .then(function (data) {
-            console.log(data);
-          });
+        newMessage();
       }
     });
 
@@ -157,5 +187,33 @@ app.controller('RoomController', function ($scope, Room, $stateParams, ActionCab
         toastr.error(response.data.message);
       }
     });
+  };
+
+  $scope.send = function () {
+    newMessage();
+  };
+
+  $scope.newLine = function () {
+    $scope.inputText += '\n';
+    $('textarea').focus();
+  };
+
+  function update_is_read(id) {
+      $scope.data.messages[_.findIndex($scope.data.messages, {id: id})].replies = [];
+    $scope.data.messages[_.findIndex($scope.data.messages, {id: id})].mentions = [];
+  }
+  $scope.isRead = function (message) {
+    if(message.replies.length + message.mentions.length > 0){
+      message.replies.map(function (reply) {
+        Reply.update(reply).then(function (response) {
+          update_is_read(reply.message_id);
+        });
+      });
+      message.mentions.map(function (mention) {
+        Mention.update(mention).then(function (response) {
+          update_is_read(mention.message_id);
+        });
+      });
+    }
   };
 });
