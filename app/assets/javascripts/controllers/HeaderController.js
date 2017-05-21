@@ -1,7 +1,7 @@
 app.controller('HeaderController', function ($scope, ModalService, $rootScope,
   ActionCableChannel, Contact, Room) {
 
-
+  $rootScope.current_user = $('#current_user').val();
 
   function update_new_request_contact() {
     Contact.request(0).then(function (data) {

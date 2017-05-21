@@ -21,68 +21,7 @@
       </div>
       <div class="row">
         <div class="col-sm-9">
-          <div class="box-body" id="messages">
-            <ul class="messages">
-              <li>
-                <div class="row">
-                  <div class="col-sm-12">
-                    <h5 class="text-center load-messages" ng-if="!canLoadMessages">
-                      <%= t "rooms.no_more" %>
-                    </h5>
-                  </div>
-                </div>
-              </li>
-              <li ng-repeat="message in data.messages | orderBy:'id'"
-                id="msg-{{ message.id }}" data="{{ message.id }}"
-                class="msg msg-{{ message.id }}">
-                <div class="row">
-                  <div class="col-sm-12">
-                    <hr ng-if="message.user.id !== data.messages[$index -1].user.id">
-                    <div class="row message-content">
-                      <div class="col-xs-3 col-sm-1 ">
-                        <img ng-src="{{ message.user.avatar.thumb.url }}" alt=""
-                          ng-if="message.user.id !== data.messages[$index -1].user.id"
-                          class="img-responsive avatar center-block">
-                      </div>
-                      <div class="col-xs-9 col-sm-10">
-                        <div ng-if="message.user.id !== data.messages[$index -1].user.id" class="userinfo">
-                          <a href="">
-                            <b>{{ message.user.username || 'Loading..' }}</b>
-                            <small class="organization">{{ message.user.organization }}</small>
-                          </a>
-                          <br>
-                        </div>
-                        <div ng-bind-html="convert(message.content)">
-                        </div>
-                      </div>
-                      <div class="hidden-xs col-sm-1 time">
-                        <small>
-                          <em>{{ message.created_at.substr(11, 5); }}</em>
-                        </small>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="action">
-                    <small ng-click="reply(message)">
-                      <i class="fa fa-reply fa-fw"></i>
-                      <%= t "rooms.reply" %>
-                    </small>
-                    <small>
-                      <i class="fa fa-edit fa-fw"></i>
-                      <%= t "rooms.edit" %>
-                    </small>
-                    <small>
-                      <i class="fa fa-trash fa-fw"></i>
-                      <%= t "rooms.trash" %>
-                    </small>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </div>
-          <div class="box-footer">
-            <%= render "templates/editor" %>
-          </div>
+          <%= render "templates/messages" %>
         </div>
         <div class="col-sm-3">
           <h4><%= t "rooms.group_description" %></h4>

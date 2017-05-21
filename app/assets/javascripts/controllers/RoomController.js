@@ -1,5 +1,5 @@
 app.controller('RoomController', function ($scope, Room, $stateParams, ActionCableChannel, Message,
-  $timeout, $state, toastr, $sce, ModalService) {
+  $timeout, $state, toastr, $sce, ModalService, $rootScope) {
   $scope.inputText = '';
   $scope.room_id = $stateParams.room_id;
   $scope.canLoadMessages = true;
@@ -85,6 +85,9 @@ app.controller('RoomController', function ($scope, Room, $stateParams, ActionCab
     else if (response.notify.type === 'update_room_info') {
       getRoomInfo();
     }
+    else if (response.notify.type === 'destroy_message') {
+      _.remove($scope.data.messages, {id: response.notify.message.id})
+    }
   };
 
   consumer.subscribe(callback).then(function () {
@@ -142,6 +145,17 @@ app.controller('RoomController', function ($scope, Room, $stateParams, ActionCab
           });
         }
       });
+    });
+  };
+
+  $scope.delete = function (message) {
+    Message.destroy($scope.room, message).then(function (response) {
+      if (response.status === 200){
+        toastr.success(response.data.message);
+      }
+      else {
+        toastr.error(response.data.message);
+      }
     });
   };
 });

@@ -32,7 +32,7 @@
               <div class="col-sm-6 members">
                 <h4><%= t "rooms.admin" %></h4>
                 <hr>
-                <img src="https://appdata.chatwork.com/avatar/769/769223.rsz.jpg"
+                <img ng-src="{{ item.avatar.thumb.url }}"
                   alt="" ng-repeat="item in room.list_admin" class="avatar"
                   data-toggle="tooltip" title="{{ item.username }}">
                 <hr>
@@ -40,8 +40,9 @@
                 <div ng-if="room.list_members.length > 0">
                   <h4><%= t "rooms.members" %></h4>
                   <hr>
-                  <img src="https://appdata.chatwork.com/avatar/769/769223.rsz.jpg"
-                     alt="" ng-repeat="item in room.list_members">
+                  <img ng-src="{{ item.avatar.thumb.url }}"
+                     alt="" ng-repeat="item in room.list_members" class="avatar"
+                       data-toggle="tooltip" title="{{ item.username }}">
                   <hr>
                 </div>
               </div>

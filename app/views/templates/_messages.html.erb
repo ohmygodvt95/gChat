@@ -1,0 +1,21 @@
+<div class="box-body" id="messages">
+  <ul class="messages">
+    <li>
+      <div class="row">
+        <div class="col-sm-12">
+          <h5 class="text-center load-messages" ng-if="!canLoadMessages">
+            <%= t "rooms.no_more" %>
+          </h5>
+        </div>
+      </div>
+    </li>
+    <li ng-repeat="message in data.messages | orderBy:'id'"
+      id="msg-{{ message.id }}" data="{{ message.id }}"
+      class="msg msg-{{ message.id }}">
+      <%= render "templates/message" %>
+    </li>
+  </ul>
+</div>
+<div class="box-footer">
+  <%= render "templates/editor" %>
+</div>

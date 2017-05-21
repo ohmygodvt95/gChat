@@ -17,4 +17,16 @@ app.service('Message', function ($http, $q, $state) {
       });
     return deferred.promise;
   };
+
+  this.destroy = function (room, message) {
+    var deferred = $q.defer();
+    var promise = $http.delete(app.basePath + 'rooms/' + room.id
+      + '/messages/' + message.id)
+      .then(function (response) {
+        deferred.resolve(response);
+      }, function (response) {
+        deferred.resolve(response);
+      });
+    return deferred.promise;
+  };
 });

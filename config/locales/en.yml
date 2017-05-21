@@ -80,3 +80,6 @@ en:
     me: ME
     mention_desc: "ME: Specify who you're mention"
     tasks: My tasks
+    message_not_found: Message does not exist
+    message_delete_succees: Message has been destroy
+    message_delete_failure: Message can't destroy

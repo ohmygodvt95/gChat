@@ -60,6 +60,7 @@
             <span class="hidden-xs"><%= current_user.email %></span>
             <span class="hidden-md"><i class="fa fa-gears"></i></span>
           </a>
+          <input type="hidden" id="current_user" value="<%= current_user.id %>">
           <ul class="dropdown-menu">
             <li class="user-header">
               <img src="<%= current_user.avatar.thumb.url %>"

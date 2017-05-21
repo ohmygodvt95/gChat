@@ -1,6 +1,7 @@
 class Message < ApplicationRecord
   after_create :content_progress_after_create
   after_create {MessageCreatedBoardcastJob.perform_now self}
+  after_destroy {MessageDestroyBoardcastJob.perform_now self}
 
   belongs_to :room
   belongs_to :user
