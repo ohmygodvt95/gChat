@@ -1,6 +1,6 @@
 class Message < ApplicationRecord
   after_create :content_progress_after_create
-  after_commit {MessageCreatedBoardcastJob.perform_now self}
+  after_create {MessageCreatedBoardcastJob.perform_now self}
 
   belongs_to :room
   belongs_to :user
@@ -23,7 +23,7 @@ class Message < ApplicationRecord
           reply_user_id: message.user.id, reply_message_id: message.id, user_id: self.user_id
         puts "@reply:#{message.id}"
         self.content = self.content.gsub "@reply:#{message.id}",
-          "<span data=\"#{message.id}\" class=\"reply\"><img src=\"https://appdata.chatwork.com/avatar/769/769223.rsz.jpg\"/> RE</span>"
+          "<span data=\"#{message.id}\" class=\"reply\"><img src=\"#{message.user.avatar.thumb.url}\"/> RE</span>"
       end
     end
     self.save

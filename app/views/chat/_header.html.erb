@@ -33,7 +33,7 @@
           </a>
         </li>
         <li class="dropdown notifications-menu">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          <a href="" class="dropdown-toggle" data-toggle="dropdown">
             <i class="fa fa-bell-o"></i>
             <span class="label label-warning">10</span>
           </a>
@@ -56,13 +56,13 @@
           </ul>
         </li>
         <li class="dropdown user user-menu">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          <a href="" class="dropdown-toggle" data-toggle="dropdown">
             <span class="hidden-xs"><%= current_user.email %></span>
             <span class="hidden-md"><i class="fa fa-gears"></i></span>
           </a>
           <ul class="dropdown-menu">
             <li class="user-header">
-              <img src="https://t4.ftcdn.net/jpg/01/14/32/23/160_F_114322373_YVmRgqPXptm6wif90TnrN04mVVW5yLnM.jpg"
+              <img src="<%= current_user.avatar.thumb.url %>"
                 class="img-circle" alt="User Image">
               <p>
                 <%= current_user.email %>
@@ -70,10 +70,10 @@
               </p>
             </li>
             <li class="user-footer">
-              <a href="#" class="btn btn-default btn-block btn-flat">
+              <%= link_to edit_user_registration_url, class: "btn btn-default btn-block btn-flat" do %>
                 <i class="fa fa-fw fa-vcard"></i>
                 <%= t "chat.header.profile" %>
-              </a>
+              <% end %>
               <%= link_to destroy_user_session_path,
                 method: :delete, class: "btn btn-default btn-flat btn-block" do %>
                 <i class="fa fa-fw fa-sign-out"></i>

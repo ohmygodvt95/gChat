@@ -95,6 +95,12 @@ $re: #66A300;
       position: relative;
       z-index: 10;
 
+      .organization {
+        color: $gray;
+        font-style: italic;
+        padding-left: 10px;
+      }
+
       .action {
         background-color: $white;
         border: 1px solid $hovermsg;

@@ -19,6 +19,40 @@
           <%= f.text_field :username, autofocus: true, class: "form-control" %>
         </div>
 
+        <div class="field">
+          <%= f.label :organization %><br />
+          <%= f.text_field :organization, autofocus: true, class: "form-control" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :division %><br />
+          <%= f.text_field :division, autofocus: true, class: "form-control" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :phone %><br />
+          <%= f.text_field :phone, autofocus: true, class: "form-control" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :url %><br />
+          <%= f.text_field :url, autofocus: true, class: "form-control" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :description %><br />
+          <%= f.text_field :description, autofocus: true, class: "form-control" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :avatar %><br />
+          <%= f.file_field :avatar, autofocus: true %>
+          <br>
+          <img src="<%= current_user.avatar.thumb.url %>" alt="avatar"
+            class="img-responsive center-block">
+          <br>
+        </div>
+
         <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
           <div><%= t "devise.edit.currently_waiting_confirm" %>: <%= resource.unconfirmed_email %></div>
         <% end %>
