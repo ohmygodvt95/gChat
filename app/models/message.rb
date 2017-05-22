@@ -1,6 +1,6 @@
 class Message < ApplicationRecord
   after_create :content_progress_after_create
-  after_commit {MessageCreatedBoardcastJob.perform_now self}
+  after_create {MessageCreatedBoardcastJob.perform_now self}
 
   belongs_to :room
   belongs_to :user
@@ -22,7 +22,6 @@ class Message < ApplicationRecord
         reply = Reply.create message_id: self.id, room_id: self.room_id,
           reply_user_id: message.user.id, reply_message_id: message.id,
           user_id: self.user_id
-        puts "@reply:#{message.id}"
         self.content = self.content.gsub "@reply:#{message.id}",
           "<span data=\"#{message.id}\" class=\"reply\">
           <img src=\"#{message.user.avatar.thumb.url}\"/> RE</span>"
