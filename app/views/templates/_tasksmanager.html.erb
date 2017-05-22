@@ -1,0 +1,98 @@
+<script type="text/ng-template"  id="templates/tasksmanager.html">
+  <div class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close"
+            data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="text-center modal-title"><%= t "rooms.tasks" %></h4>
+        </div>
+        <div class="modal-body task-body">
+          <!-- TAB NAVIGATION -->
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="active"><a data-target="#tab1" role="tab" data-toggle="tab">
+              <%= t "rooms.in_progress" %>
+            </a></li>
+            <li><a data-target="#tab2" role="tab" data-toggle="tab">
+              <%= t "rooms.completed" %>
+            </a></li>
+          </ul>
+          <div class="tab-content">
+            <div class="active tab-pane fade in" id="tab1">
+              <hr>
+              <input type="text" ng-model="search" class="form-control" placeholder="Search">
+              <hr>
+              <div class="panel panel-primary"
+                ng-repeat="task in tasksForMe | filterBy: ['content', 'due_date', 'room.name', 'user.username']: search">
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-sm-9">
+                      <%= t "rooms.creator" %> : <span class="label label-default">{{ task.user.username }}</span>
+                      <span class="pull-right">
+                    <%= t "rooms.due_date" %>:
+                    <span class="label label-warning">{{ task.due_date.substr(0, 10) }}</span>
+                  </span>
+                      <br>
+                      <%= t "rooms.in_room" %>:
+                      <a ui-sref="room({room_id: task.room.id})" class="label label-info">{{ task.room.name }}</a>
+                      <hr>
+                      {{ task.content }}
+                      <div ng-if="task.users.length > 1">
+                        <hr>
+                        <%= t "rooms.add_task_for" %>: <%= t "rooms.you" %> {{ task.users.length - 1 }} <%= t "rooms.people" %>
+                      </div>
+                    </div>
+                    <div class="col-sm-3">
+                      <button class="btn btn-success btn-block btn-sm" ng-click="done(task)">
+                        <i class="fa fa-check"></i>
+                        <%= t "rooms.finished" %>
+                      </button>
+                      <button class="btn btn-danger btn-block btn-sm"
+                        ng-if="task.user_id == current_user" ng-click="delete(task)">
+                        <i class="fa fa-trash fa-fw"></i>
+                        <%= t "rooms.destroy" %>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="tab2">
+              <div class="panel panel-primary"
+                   ng-repeat="task in completed">
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-sm-9">
+                      <%= t "rooms.creator" %> : <span class="label label-default">{{ task.user.username }}</span>
+                      <span class="pull-right">
+                    <%= t "rooms.due_date" %>:
+                    <span class="label label-warning">{{ task.due_date.substr(0, 10) }}</span>
+                  </span>
+                      <br>
+                      <%= t "rooms.in_room" %>:
+                      <a ui-sref="room({room_id: task.room.id})" class="label label-info">{{ task.room.name }}</a>
+                      <hr>
+                      {{ task.content }}
+                      <div ng-if="task.users.length > 1">
+                        <hr>
+                        <%= t "rooms.add_task_for" %>: <%= t "rooms.you" %> {{ task.users.length - 1 }} <%= t "rooms.people" %>
+                      </div>
+                    </div>
+                    <div class="col-sm-3">
+                      <button class="btn btn-success btn-block btn-sm">
+                        <i class="fa fa-check"></i>
+                        <%= t "rooms.finished" %>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</script>

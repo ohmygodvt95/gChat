@@ -1,1 +1,1 @@
-json.data @user_tasks.as_json include: [:user, :users]
+json.data @user_tasks.as_json include: [:user, :users, :room]

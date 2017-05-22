@@ -14,7 +14,8 @@
     <ul class="sidebar-menu">
       <li ng-repeat="room in rooms | filter:{name: search}">
         <a ui-sref="room({room_id: room.id})">
-          <i class="fa fa-circle-o text-red"></i><span>{{ room.name }}</span>
+          <i class="fa fa-circle-o {{ room.room_type == 'private' ? 'text-red' : 'text-aqua' }}"></i>
+          <span>{{ room.name }}</span>
           <span ng-if="room.reply_count > 0" class="box">
             <%= t "rooms.re" %>
             <span class="label label-warning">{{ room.reply_count }}</span>

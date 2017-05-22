@@ -59,12 +59,12 @@
             <% end %>
 
             <div class="field">
-              <%= f.label :password %> <i>(<%= t "devise.edit.leave_blank_if" %>)</i><br />
-              <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+              <%= f.label :password %> <i>(<%= t "devise.edit.leave_blank_if" %>, </i>
               <% if @minimum_password_length %>
-                <br />
-                <em><%= @minimum_password_length %> <%= t "devise.edit.char_minimum" %></em>
+                <em><%= @minimum_password_length %> <%= t "devise.edit.char_minimum" %></em>)
               <% end %>
+              <br />
+              <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
             </div>
 
             <div class="field">
@@ -92,9 +92,7 @@
               data: {confirm: t("devise.edit.are_you_sure")},
               method: :delete,
               class: "btn btn-danger btn-block" %></p>
-
           <%= link_to t("devise.edit.back"), :back %>
-
         </div>
       </div>
     </div>

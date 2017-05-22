@@ -1,5 +1,5 @@
 app.controller('HeaderController', function ($scope, ModalService, $rootScope,
-  ActionCableChannel, Contact, Room, $interval, Task) {
+  ActionCableChannel, Contact, Room, $interval, Task, $timeout) {
 
   $rootScope.current_user = $('#current_user').val();
 
@@ -49,6 +49,19 @@ app.controller('HeaderController', function ($scope, ModalService, $rootScope,
     });
   };
 
+  $scope.openTaskManagerModal = function () {
+    ModalService.showModal({
+      templateUrl: 'templates/tasksmanager.html',
+      controller: 'TasksController'
+    }).then(function (modal) {
+      modal.element.modal();
+      modal.element.on('hidden.bs.modal', function () {
+        $('.modal').remove();
+        $('.modal-backdrop').remove();
+      });
+    });
+  };
+
   var consumer = new ActionCableChannel('NotifyChannel');
 
   var callback = function (response) {
@@ -65,6 +78,11 @@ app.controller('HeaderController', function ($scope, ModalService, $rootScope,
       update_list_contacts();
     }
     else if(response.notify.type === 'new_task'){
+      console.log(response.notify);
+      update_tasks();
+      update_list_contacts();
+    }
+    else if(response.notify.type === 'delete_task'){
       update_tasks();
       update_list_contacts();
     }

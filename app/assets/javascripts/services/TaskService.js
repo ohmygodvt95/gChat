@@ -34,9 +34,32 @@ app.service('Task', function ($http, $q) {
     return deferred.promise;
   };
 
+  this.completed = function () {
+    var deferred = $q.defer();
+    var promise = $http.get(app.basePath + 'tasks?completed=true' )
+      .then(function (response) {
+        deferred.resolve(response);
+      }, function (response) {
+        deferred.resolve(response);
+      });
+    return deferred.promise;
+  };
+
   this.done = function (task) {
     var deferred = $q.defer();
     var promise = $http.patch(app.basePath + 'rooms/' + task.room_id
+      + '/tasks/' + task.id)
+      .then(function (response) {
+        deferred.resolve(response);
+      }, function (response) {
+        deferred.resolve(response);
+      });
+    return deferred.promise;
+  };
+
+  this.delete = function (task) {
+    var deferred = $q.defer();
+    var promise = $http.delete(app.basePath + 'rooms/' + task.room_id
       + '/tasks/' + task.id)
       .then(function (response) {
         deferred.resolve(response);

@@ -24,7 +24,7 @@
             </span>
           </a>
         </li>
-        <li class="messages-menu">
+        <li class="messages-menu" title="Contacts management">
           <a ng-click="openContactModal()">
             <i class="fa fa-user-plus"></i>
             <span class="label label-success" ng-if="requests.total_count > 0">
@@ -32,8 +32,8 @@
             </span>
           </a>
         </li>
-        <li class="dropdown notifications-menu">
-          <a href="">
+        <li class="dropdown notifications-menu" title="Tasks management">
+          <a href="" ng-click="openTaskManagerModal()">
             <i class="fa fa-tasks"></i>
             <span class="label label-warning" ng-if="tasks.length > 0">{{ tasks.length }}</span>
           </a>

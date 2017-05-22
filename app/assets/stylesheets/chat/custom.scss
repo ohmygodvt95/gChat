@@ -97,8 +97,14 @@ $boxfooter: #EAEBE9;
   }
 
   .tasks {
-    height: 200px;
+    height: calc(100vh - 450px);
     overflow-y: auto;
+
+    .task {
+      hr {
+        margin: 10px 0 0 5px;
+      }
+    }
   }
 
   .box-body {
@@ -281,4 +287,9 @@ $boxfooter: #EAEBE9;
     padding: 8px 0 8px 40px;
     background-size: 32px 32px;
   }
+}
+
+.task-body {
+  height: 85vh;
+  overflow-y: auto;
 }

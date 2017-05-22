@@ -24,12 +24,14 @@
 //= require angular-modal-service/dst/angular-modal-service
 //= require angular-toastr/dist/angular-toastr.tpls.min
 //= require angularjs-datepicker/dist/angular-datepicker.min
+//= require angular-filter/dist/angular-filter.min
 //= require_self
 //= require_tree ./controllers
 //= require_tree ./services
 
 var app = angular
-  .module('GChat', ['ngActionCable', 'ui.router', 'angularModalService', 'toastr', '720kb.datepicker']);
+  .module('GChat', ['ngActionCable', 'ui.router', 'angularModalService',
+    'toastr', '720kb.datepicker', 'angular.filter']);
 app.basePath = $('meta[name="base"]').attr('content');
 app
   .config(function ($stateProvider, $urlRouterProvider) {

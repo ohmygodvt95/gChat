@@ -142,6 +142,9 @@ app.controller('RoomController', function ($scope, Room, $stateParams, ActionCab
     else if (response.notify.type === 'new_task') {
       getMyTasks();
     }
+    else if (response.notify.type === 'delete_task') {
+      getMyTasks();
+    }
   };
 
   function newMessage() {
@@ -258,12 +261,14 @@ app.controller('RoomController', function ($scope, Room, $stateParams, ActionCab
       modal.close.then(function(result) {
         $('.modal').remove();
         $('.modal-backdrop').remove();
+        getMyTasks();
       });
     });
   };
   
   $scope.finishedTask = function (task) {
     Task.done(task).then(function (res) {
+      toastr.success(res.data.message);
       _.remove($scope.my_tasks, {id: task.id})
     });
   };
@@ -273,5 +278,12 @@ app.controller('RoomController', function ($scope, Room, $stateParams, ActionCab
       return string.replace(/\n/g, '<br/>');
     }
     else return '';
+  };
+
+  $scope.deleteTask = function (task) {
+    Task.delete(task).then(function (res) {
+      toastr.success(res.data.message);
+      _.remove($scope.tasksForMe, {id: task.id})
+    });
   };
 });

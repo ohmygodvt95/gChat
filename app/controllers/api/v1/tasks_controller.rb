@@ -7,9 +7,15 @@ class Api::V1::TasksController < ApplicationController
   def index
     if params[:room_id]
       @user_tasks = current_user.tasks.where(room_id: params[:room_id])
-        .where("user_tasks.is_completed = ?", false)
+        .where "user_tasks.is_completed = ?", false
     else
-      @user_tasks = current_user.tasks.where("user_tasks.is_completed = ?", false)
+      if params[:completed]
+        @user_tasks = current_user.tasks
+          .where("user_tasks.is_completed = ?", true).order due_date: :desc
+      else
+        @user_tasks = current_user.tasks.
+          where("user_tasks.is_completed = ?", false)
+      end
     end
   end
 
@@ -27,7 +33,16 @@ class Api::V1::TasksController < ApplicationController
 
   def update
     user_task = @task.user_tasks.find_by user_id: current_user.id
-    user_task.update_attributes is_completed: true
+    if user_task.update_attributes(is_completed: true)
+      @message = t "rooms.task_update"
+    end
+
+  end
+
+  def destroy
+    if @task.destroy
+      @message = t "rooms.task_delete"
+    end
   end
 
   protected

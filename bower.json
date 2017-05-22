@@ -26,6 +26,7 @@
     "lodash": "^4.17.4",
     "angular-toastr": "^2.1.1",
     "wow": "wowjs#^1.1.2",
-    "angularjs-datepicker": "^2.1.19"
+    "angularjs-datepicker": "^2.1.19",
+    "angular-filter": "^0.5.16"
   }
 }
