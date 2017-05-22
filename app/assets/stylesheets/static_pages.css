@@ -1,5 +1,7 @@
 /**
  *= require bootstrap/dist/css/bootstrap.min
  *= require font-awesome
+ *= require wow/css/libs/animate
  *= require_tree ./static_pages
+ *= require_self
  */

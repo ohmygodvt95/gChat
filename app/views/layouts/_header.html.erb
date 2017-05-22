@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default" role="navigation">
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -17,9 +17,6 @@
         <% if user_signed_in? %>
           <li>
             <%= link_to t("header.chat"), chat_index_path(trailing_slash: true) %>
-          </li>
-          <li>
-            <%= link_to t("header.logout"), destroy_user_session_path, method: :delete %>
           </li>
         <% else %>
           <li><%= link_to t("header.sign_in"), new_user_session_path %></li>

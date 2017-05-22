@@ -1,9 +1,58 @@
-<% if user_signed_in? %>
-  <h1 class="text-center">
-    <%= t "pages.home.chat_now" %>
-  </h1>
-<% else %>
-  <h1 class="text-center">
-    <%= t "pages.home.login_now" %>
-  </h1>
-<% end %>
+<section id="landing">
+  <div class="container">
+    <h1 class="text-center"><%= t "app.name" %></h1>
+    <h3 class="text-center slogan wow slideInRight">Beautiful, simple and easy to use for chat</h3>
+
+    <div class="row wow slideInLeft">
+      <div class="col-sm-4 col-sm-offset-4">
+        <% if user_signed_in? %>
+          <a href="<%= chat_index_path %>" class="btn btn-default center-block"><%= t "pages.home.chat_now" %></a>
+        <% else %>
+          <a href="<%= new_user_session_path %>" class="btn btn-default center-block"><%= t "pages.home.login_now" %></a>
+        <% end %>
+      </div>
+    </div>
+    <br>
+    <img src="http://i.imgur.com/hjroYxK.png" alt="" class="img-header img-responsive center-block wow bounceInUp"
+      data-wow-duration="2s">
+  </div>
+</section>
+<br>
+<br>
+<br>
+<section id="intro">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6">
+        <hr>
+        <h3>Simple & Elegant Design</h3>
+        <hr>
+        <p>
+          Bacon ipsum dolor sit amet chuck hamburger ribeye sirloin, meatloaf ball tip filet mignon pancetta shank.
+          Tail turkey pork, ribeye sirloin tenderloin jerky beef bacon flank. Tenderloin strip steak ham bacon short
+          loin leberkas swine.
+        </p>
+      </div>
+      <div class="col-sm-6">
+        <img src="http://www.iamsupview.be/themes/flading/flading-flat/img/service2.png" alt=""
+          class="img-responsive center-block wow slideInLeft">
+      </div>
+      <div class="col-sm-6">
+        <br>
+        <img src="http://www.iamsupview.be/themes/flading/flading-flat/img/service3.png" alt=""
+             class="img-responsive center-block wow slideInRight">
+      </div>
+      <div class="col-sm-6">
+        <br>
+        <hr>
+        <h3>Lovers of Clean Design</h3>
+        <hr>
+        <p>
+          Shankle pastrami prosciutto, bresaola swine salami short ribs chuck rump jowl.
+          Frankfurter tenderloin jerky ribeye short ribs
+          turducken pork belly flank filet mignon brisket drumstick.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
