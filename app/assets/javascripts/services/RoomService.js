@@ -40,4 +40,15 @@ app.service('Room', function ($http, $q) {
       });
     return deferred.promise;
   };
+
+  this.leave = function (room) {
+    var deferred = $q.defer();
+    var promise = $http.delete(app.basePath + 'rooms/' + room.id + '/leave')
+      .then(function (response) {
+        deferred.resolve(response);
+      }, function(response){
+        deferred.resolve(response);
+      });
+    return deferred.promise;
+  };
 });
