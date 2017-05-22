@@ -1,6 +1,6 @@
 app.controller('RoomController', function ($scope, Room, $stateParams, ActionCableChannel, Message,
-  $timeout, $state, toastr) {
-
+  $timeout, $state, toastr, $sce) {
+  $scope.inputText = '';
   $scope.room_id = $stateParams.room_id;
   $scope.canLoadMessages = true;
   $scope.data = {
@@ -18,9 +18,12 @@ app.controller('RoomController', function ($scope, Room, $stateParams, ActionCab
         loadMoreMessages($scope.data.from, $timeout(function () {
           scrollToMessage();
         }, 500));
-
       }
     });
+
+    $(document).on('click', '.reply', function () {
+      alert($(this).attr('data'));
+    })
   }
 
   /**
@@ -111,5 +114,13 @@ app.controller('RoomController', function ($scope, Room, $stateParams, ActionCab
     }, function (response) {
       toastr.error(response.data.message);
     });
+  };
+
+  $scope.reply = function (message) {
+    $scope.inputText += ('@reply:' + message.id + ' ' + message.user.username + '\n');
+  };
+
+  $scope.convert = function (string) {
+    return $sce.trustAsHtml(string);
   };
 });

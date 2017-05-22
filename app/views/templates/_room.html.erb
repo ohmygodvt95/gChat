@@ -51,8 +51,7 @@
                           </a>
                           <br>
                         </div>
-                        <div>
-                          {{ message.raw_content }}
+                        <div ng-bind-html="convert(message.content)">
                         </div>
                       </div>
                       <div class="hidden-xs col-sm-1 time">
@@ -61,6 +60,20 @@
                         </small>
                       </div>
                     </div>
+                  </div>
+                  <div class="action">
+                    <small ng-click="reply(message)">
+                      <i class="fa fa-reply fa-fw"></i>
+                      <%= t "rooms.reply" %>
+                    </small>
+                    <small>
+                      <i class="fa fa-edit fa-fw"></i>
+                      <%= t "rooms.edit" %>
+                    </small>
+                    <small>
+                      <i class="fa fa-trash fa-fw"></i>
+                      <%= t "rooms.trash" %>
+                    </small>
                   </div>
                 </div>
               </li>

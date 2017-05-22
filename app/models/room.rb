@@ -29,6 +29,8 @@ class Room < ApplicationRecord
     json["is_admin"] = is_admin_room? options[:user]
     json["list_admin"] = list_admin
     json["list_members"] = list_members
+    json["reply_count"] = reply_count options[:user]
+    json["mention_count"] = mention_count options[:user]
     json
   end
 
@@ -46,5 +48,17 @@ class Room < ApplicationRecord
   def list_members
     members = user_rooms.where is_admin: false
     members.map &:user
+  end
+
+  def reply_count user
+    replies = Reply.where reply_user_id: user.id, room_id: self.id,
+      is_read: false
+    replies.count
+  end
+
+  def mention_count user
+    mentions = Mention.where mention_user_id: user.id, room_id: self.id,
+      is_read: false
+    mentions.count
   end
 end
