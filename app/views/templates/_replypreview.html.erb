@@ -1,0 +1,46 @@
+<script type="text/ng-template" id="templates/replypreview.html">
+  <div class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close"
+            data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="text-center modal-title"><%= t "rooms.reply_message" %></h4>
+        </div>
+        <div class="modal-body room reply-preview">
+          <ul class="messages">
+            <li>
+              <div class="row message">
+                <div class="col-sm-12">
+                  <div class="row message-content">
+                    <div class="col-xs-3 col-sm-2">
+                      <img ng-src="{{ message.user.avatar.thumb.url }}" alt=""
+                        class="img-responsive avatar center-block">
+                    </div>
+                    <div class="col-xs-9 col-sm-9
+                      {{ message.replies.length + message.mentions.length > 0 ? 'notice' : '' }}">
+                      <div class="userinfo">
+                        <a href="">
+                          <b>{{ message.user.username || 'Loading..' }}</b>
+                          <small class="organization">{{ message.user.organization }}</small>
+                        </a>
+                        <br>
+                      </div>
+                      <div ng-bind-html="convert(message.content)">
+                      </div>
+                    </div>
+                    <div class="col-sm-1 time">
+                      <small>
+                        <em>{{ message.created_at.substr(11, 5); }}</em>
+                      </small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</script>

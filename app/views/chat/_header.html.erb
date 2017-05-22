@@ -33,27 +33,10 @@
           </a>
         </li>
         <li class="dropdown notifications-menu">
-          <a href="" class="dropdown-toggle" data-toggle="dropdown">
+          <a href="">
             <i class="fa fa-tasks"></i>
-            <span class="label label-warning">{{ tasks.length }}</span>
+            <span class="label label-warning" ng-if="tasks.length > 0">{{ tasks.length }}</span>
           </a>
-          <ul class="dropdown-menu">
-            <li class="header">
-              <%= t "chat.header.you_have" %>
-              {{ tasks.length }}
-              <%= t "chat.header.notifications" %>
-            </li>
-            <li>
-              <ul class="menu">
-                <li>
-                  <a href="#">
-                    <i class="fa fa-users text-aqua"></i>
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li class="footer"><a href="#"><%= t "chat.header.view_all" %></a></li>
-          </ul>
         </li>
         <li class="dropdown user user-menu">
           <a href="" class="dropdown-toggle" data-toggle="dropdown">

@@ -27,7 +27,28 @@ app.controller('RoomController', function ($scope, Room, $stateParams, ActionCab
     });
 
     $(document).on('click', '.reply', function () {
-      alert($(this).attr('data'));
+      Message.show($scope.room, {id: $(this).attr('data')})
+        .then(function (res) {
+        console.log(res.data);
+          ModalService.showModal({
+            templateUrl: 'templates/replypreview.html',
+            controller: function($scope, $sce, message) {
+              $scope.message = message;
+              $scope.convert = function (string) {
+                return $sce.trustAsHtml(string);
+              };
+            },
+            inputs: {
+              message: res.data.data
+            }
+          }).then(function (modal) {
+            modal.element.modal();
+            modal.element.on('hidden.bs.modal', function () {
+              $('.modal').remove();
+              $('.modal-backdrop').remove();
+            });
+          });
+      });
     });
 
     $('#emoticon').popover({
@@ -136,11 +157,10 @@ app.controller('RoomController', function ($scope, Room, $stateParams, ActionCab
   consumer.subscribe(callback).then(function () {
 
     init();
-
-    $('textarea').keydown(function (event) {
-      if (event.keyCode === 13) {
-        event.preventDefault();
+    $('textarea').keypress(function(event) {
+      if (event.keyCode === 13 && !event.shiftKey) {
         newMessage();
+        return false;
       }
     });
 
@@ -203,11 +223,6 @@ app.controller('RoomController', function ($scope, Room, $stateParams, ActionCab
     newMessage();
   };
 
-  $scope.newLine = function () {
-    $scope.inputText += '\n';
-    $('textarea').focus();
-  };
-
   function update_is_read(id) {
     $scope.data.messages[_.findIndex($scope.data.messages, {id: id})].replies = [];
     $scope.data.messages[_.findIndex($scope.data.messages, {id: id})].mentions = [];
@@ -251,5 +266,12 @@ app.controller('RoomController', function ($scope, Room, $stateParams, ActionCab
     Task.done(task).then(function (res) {
       _.remove($scope.my_tasks, {id: task.id})
     });
+  };
+
+  $scope.standardize = function (string) {
+    if(_.isString(string)){
+      return string.replace(/\n/g, '<br/>');
+    }
+    else return '';
   };
 });

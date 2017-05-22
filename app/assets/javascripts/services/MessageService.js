@@ -12,7 +12,6 @@ app.service('Message', function ($http, $q, $state) {
     var deferred = $q.defer();
     var promise = $http.get(app.basePath + 'rooms/' + room.id
       + '/messages/' + message.id).then(function (response) {
-        console.log(response);
       deferred.resolve(response);
     });
     return deferred.promise;

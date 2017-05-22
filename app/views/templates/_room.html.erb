@@ -26,8 +26,7 @@
         <div class="col-sm-3">
           <h4><%= t "rooms.group_description" %></h4>
           <hr>
-          <div class="description">
-            {{ room.description }}
+          <div class="description" ng-bind-html="convert(standardize(room.description))">
           </div>
           <hr>
           <h4>

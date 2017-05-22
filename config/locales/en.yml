@@ -91,3 +91,7 @@ en:
     due_date: Due date
     task_created: Task created
     finished: Done
+    reply_message: Reply message
+    shift_enter: Enter for send message, Shift + Enter for line break!
+    people: people
+    you_assign_task: You assign task for

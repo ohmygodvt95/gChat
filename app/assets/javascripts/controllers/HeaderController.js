@@ -41,7 +41,7 @@ app.controller('HeaderController', function ($scope, ModalService, $rootScope,
       controller: 'GroupController'
     }).then(function (modal) {
       modal.element.modal();
-      modal.element.on('hidden.bs.modal', function () {
+      modal.close.then(function(result) {
         $('.modal').remove();
         $('.modal-backdrop').remove();
         update_list_contacts();

@@ -19,6 +19,7 @@ app.controller('NewTaskController', function ($scope, Room, close, room, Task, t
     };
     Task.create($scope.room, task).then(function (response) {
       toastr.success(response.data.message);
+      $scope.close();
     });
   };
 });

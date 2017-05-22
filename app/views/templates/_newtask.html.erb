@@ -1,4 +1,4 @@
-a<script type="text/ng-template" id="templates/newtask.html">
+<script type="text/ng-template" id="templates/newtask.html">
   <div class="modal fade">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -13,17 +13,31 @@ a<script type="text/ng-template" id="templates/newtask.html">
         <div class="modal-body">
           <h5><%= t "rooms.description" %></h5>
           <textarea cols="30" rows="2" title="<%= t "rooms.description" %>" ng-model="content"
-            class="form-control"></textarea>
-          <h5><%= t "rooms.add_task_for" %></h5>
-          <select ng-model="list" title="Mention" class="form-control" multiple>
-            <option ng-value="user" ng-repeat="user in room.list_admin">{{ user.username }}</option>
-            <option ng-value="user" ng-repeat="user in room.list_members">{{ user.username }}</option>
-          </select>
+            class="form-control" placeholder="<%= t "rooms.description" %>"></textarea>
           <h5><%= t "rooms.due_date" %></h5>
-          <input type="datetime" ng-model="due_date" class="form-control">
+          <datepicker button-prev="<i class='fa fa-arrow-left'></i>"
+            button-next="<i class='fa fa-arrow-right'></i>" date-format="yyyy-MM-dd">
+            <input ng-model="due_date" type="datetime" class="form-control"
+              placeholder="<%= t "rooms.due_date" %>"/>
+            <br>
+          </datepicker>
+          <h5><%= t "rooms.add_task_for" %></h5>
+          <select ng-model="list" title="Mention" class="form-control list-mention" multiple>
+            <option ng-value="user" ng-repeat="user in room.list_admin"
+              style="background-image: url('{{ user.avatar.thumb.url }}')">
+              {{ user.username }}
+            </option>
+            <option ng-value="user" ng-repeat="user in room.list_members"
+              style="background-image: url('{{ user.avatar.thumb.url }}')">
+              {{ user.username }}
+            </option>
+          </select>
         </div>
         <div class="modal-footer">
-          <button class="btn btn-primary" ng-click="create()"><%= t "rooms.create" %></button>
+          <button class="btn btn-primary" ng-click="create()"
+            title="<%= t "rooms.you_assign_task" %> {{ list.length }} <%= t "rooms.people" %>">
+            <%= t "rooms.create" %>
+          </button>
           <button class="btn btn-danger" ng-click="close()">Cancel</button>
         </div>
       </div>

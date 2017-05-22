@@ -7,12 +7,8 @@
     title="<%= t "rooms.emoticons" %>" data-placement="top" data-popover-content="#a1">
     &#128578;
   </span>
-  <span class="btn btn-default" data-toggle="tooltip"  ng-click="newLine()"
-    title="<%= t "rooms.new_line" %>">
-    <%= t "rooms.new_line" %>
-  </span>
   <span class="btn btn-primary pull-right" data-toggle="tooltip"  ng-click="send()"
-        title="<%= t "rooms.send" %>">
+    title="<%= t "rooms.send" %>">
     <i class="fa fa-fw fa-send-o"></i>
     <%= t "rooms.send" %>
   </span>
@@ -24,5 +20,6 @@
     </div>
   </div>
 </div>
-<textarea name="" id="" cols="30" rows="2" class="form-control"
-  title="text" ng-model="inputText" ng-mousedown="updateUserRoom()"></textarea>
+<textarea name="" id="" cols="30" rows="3" class="form-control"
+  title="text" ng-model="inputText" ng-mousedown="updateUserRoom()"
+  placeholder="<%= t "rooms.shift_enter" %>"></textarea>
