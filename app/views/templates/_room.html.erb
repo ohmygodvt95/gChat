@@ -30,9 +30,16 @@
             {{ room.description }}
           </div>
           <hr>
-          <h4><%= t "rooms.tasks" %></h4>
+          <h4>
+            <%= t "rooms.tasks" %> <span class="badge">{{ my_tasks.length }}</span>
+            <button class="btn btn-primary" data-toggle="tooltip" title="Add a new task"
+              ng-click="addTask()">
+              <i class="fa fa-fw fa-plus"></i>
+            </button>
+          </h4>
           <hr>
           <div class="tasks">
+            <%= render "templates/tasks" %>
           </div>
         </div>
       </div>

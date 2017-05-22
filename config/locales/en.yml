@@ -86,3 +86,8 @@ en:
     new_line: New line
     send: Send
     emoticons: Emoticons
+    add_a_task: Add a new task
+    add_task_for: Add task for
+    due_date: Due date
+    task_created: Task created
+    finished: Done

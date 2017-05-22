@@ -31,6 +31,7 @@ class Room < ApplicationRecord
     json["list_members"] = list_members
     json["reply_count"] = reply_count options[:user]
     json["mention_count"] = mention_count options[:user]
+    json["task_count"] = task_count options[:user]
     json
   end
 
@@ -60,5 +61,16 @@ class Room < ApplicationRecord
     mentions = Mention.where mention_user_id: user.id, room_id: self.id,
       is_read: false
     mentions.count
+  end
+
+  def task_count user
+    count = 0
+    self.tasks.each do |task|
+      user_task = task.user_tasks.find_by user_id: user.id
+      if user_task && user_task.is_completed == false
+        count += 1
+      end
+    end
+    count
   end
 end

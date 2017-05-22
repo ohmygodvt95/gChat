@@ -1,5 +1,5 @@
 app.controller('HeaderController', function ($scope, ModalService, $rootScope,
-  ActionCableChannel, Contact, Room, $interval) {
+  ActionCableChannel, Contact, Room, $interval, Task) {
 
   $rootScope.current_user = $('#current_user').val();
 
@@ -14,6 +14,12 @@ app.controller('HeaderController', function ($scope, ModalService, $rootScope,
     });
   }
 
+  function update_tasks() {
+    Task.total().then(function (res) {
+      $scope.tasks = res.data.data;
+    });
+  }
+  
   $scope.openContactModal = function () {
     ModalService.showModal({
       templateUrl: 'templates/contacts.html',
@@ -58,6 +64,10 @@ app.controller('HeaderController', function ($scope, ModalService, $rootScope,
     else if(response.notify.type === 'mention_user'){
       update_list_contacts();
     }
+    else if(response.notify.type === 'new_task'){
+      update_tasks();
+      update_list_contacts();
+    }
   };
 
   consumer.subscribe(callback).then(function () {
@@ -69,6 +79,7 @@ app.controller('HeaderController', function ($scope, ModalService, $rootScope,
 
   function init(){
     update_new_request_contact();
+    update_tasks();
   }
 
   init();

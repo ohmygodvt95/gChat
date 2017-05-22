@@ -23,6 +23,10 @@
             <%= t "rooms.me" %>
             <span class="label label-warning">{{ room.mention_count }}</span>
           </span>
+          <span ng-if="room.task_count > 0" class="box">
+            <i class="fa fa-tasks"></i>
+            <span class="label label-warning">{{ room.task_count }}</span>
+          </span>
         </a>
       </li>
     </ul>

@@ -1,0 +1,9 @@
+<div class="panel panel-primary" ng-repeat="task in my_tasks">
+  <div class="panel-body">
+    {{ task.content }}
+  </div>
+  <div class="panel-footer"><%= t "rooms.due_date" %>:
+    {{ task.due_date.substr(0, 10) }}
+    <button class="btn btn-success btn-sm" ng-click="finishedTask(task)"><%= t "rooms.finished" %></button>
+  </div>
+</div>

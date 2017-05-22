@@ -1,23 +1,29 @@
-a<script type="text/ng-template" id="templates/mention.html">
+a<script type="text/ng-template" id="templates/newtask.html">
   <div class="modal fade">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close"
-                  data-dismiss="modal" aria-hidden="true">&times;</button>
+            data-dismiss="modal" aria-hidden="true">&times;</button>
           <h4 class="modal-title">
-            <i class="fa fa-wechat"></i>
-            <%= t "rooms.mention_desc" %>
+            <i class="fa fa-tasks"></i>
+            <%= t "rooms.add_a_task" %>
           </h4>
         </div>
         <div class="modal-body">
+          <h5><%= t "rooms.description" %></h5>
+          <textarea cols="30" rows="2" title="<%= t "rooms.description" %>" ng-model="content"
+            class="form-control"></textarea>
+          <h5><%= t "rooms.add_task_for" %></h5>
           <select ng-model="list" title="Mention" class="form-control" multiple>
             <option ng-value="user" ng-repeat="user in room.list_admin">{{ user.username }}</option>
             <option ng-value="user" ng-repeat="user in room.list_members">{{ user.username }}</option>
           </select>
+          <h5><%= t "rooms.due_date" %></h5>
+          <input type="datetime" ng-model="due_date" class="form-control">
         </div>
         <div class="modal-footer">
-          <button class="btn btn-primary" ng-click="mention()">Mention</button>
+          <button class="btn btn-primary" ng-click="create()"><%= t "rooms.create" %></button>
           <button class="btn btn-danger" ng-click="close()">Cancel</button>
         </div>
       </div>

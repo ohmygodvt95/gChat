@@ -1,4 +1,6 @@
 class Task < ApplicationRecord
+  after_create {TaskAllBoardcastJob.perform_now self}
+
   belongs_to :user
   belongs_to :room
 

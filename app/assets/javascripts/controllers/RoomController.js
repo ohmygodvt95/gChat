@@ -1,5 +1,5 @@
 app.controller('RoomController', function ($scope, Room, $stateParams, ActionCableChannel, Message,
-  $timeout, $state, toastr, $sce, ModalService, $rootScope, Reply, Mention, UserRoom) {
+  $timeout, $state, toastr, $sce, ModalService, $rootScope, Reply, Mention, UserRoom, Task) {
   $scope.inputText = '';
   $scope.room_id = $stateParams.room_id;
   $scope.canLoadMessages = true;
@@ -53,7 +53,14 @@ app.controller('RoomController', function ($scope, Room, $stateParams, ActionCab
   function getRoomInfo() {
     Room.show($scope.room_id).then(function (response) {
       $scope.room = response.data.data;
+      getMyTasks();
       loadMoreMessages($scope.data.from, scrollBox);
+    });
+  }
+
+  function getMyTasks() {
+    Task.index($scope.room).then(function(res){
+      $scope.my_tasks = res.data.data;
     });
   }
 
@@ -110,6 +117,9 @@ app.controller('RoomController', function ($scope, Room, $stateParams, ActionCab
     }
     else if (response.notify.type === 'destroy_message') {
       _.remove($scope.data.messages, {id: response.notify.message.id})
+    }
+    else if (response.notify.type === 'new_task') {
+      getMyTasks();
     }
   };
 
@@ -199,7 +209,7 @@ app.controller('RoomController', function ($scope, Room, $stateParams, ActionCab
   };
 
   function update_is_read(id) {
-      $scope.data.messages[_.findIndex($scope.data.messages, {id: id})].replies = [];
+    $scope.data.messages[_.findIndex($scope.data.messages, {id: id})].replies = [];
     $scope.data.messages[_.findIndex($scope.data.messages, {id: id})].mentions = [];
   }
   $scope.isRead = function (message) {
@@ -219,5 +229,27 @@ app.controller('RoomController', function ($scope, Room, $stateParams, ActionCab
 
   $scope.updateUserRoom = function () {
     UserRoom.update($scope.room);
+  };
+
+  $scope.addTask = function () {
+    ModalService.showModal({
+      templateUrl: 'templates/newtask.html',
+      controller: 'NewTaskController',
+      inputs: {
+        room: $scope.room
+      }
+    }).then(function (modal) {
+      modal.element.modal();
+      modal.close.then(function(result) {
+        $('.modal').remove();
+        $('.modal-backdrop').remove();
+      });
+    });
+  };
+  
+  $scope.finishedTask = function (task) {
+    Task.done(task).then(function (res) {
+      _.remove($scope.my_tasks, {id: task.id})
+    });
   };
 });
