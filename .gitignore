@@ -35,3 +35,4 @@ config/environments/*.local.yml
 /.rubocop.yml
 /.framgia-ci-result.temp.yml
 /.framgia-ci.yml
+/public/uploads/*

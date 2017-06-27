@@ -1,0 +1,56 @@
+<script type="text/ng-template"  id="templates/roomedit.html">
+  <section class="content room">
+    <div class="box">
+      <div class="box-header with-border">
+        <h3 class="box-title">{{ room.name || 'Loading...' }}
+          <span class="text-danger">{{ message }}</span>
+        </h3>
+        <span class="pull-right">
+          <a ui-sref="room({room_id: room.id})">
+            <i class="fa fa-fw fa-reply "></i>
+          </a>
+        </span>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="box-body">
+            <div class="row">
+              <div class="col-sm-6">
+                <div ng-if="room.room_type == 'group'">
+                  <h4><%= t "rooms.group_name" %></h4>
+                  <input title="room" ng-model="room.name"
+                    class="form-control">
+                  <hr>
+                </div>
+                <h4><%= t "rooms.group_description" %></h4>
+                <textarea title="room" cols="30" rows="8" ng-model="room.description"
+                  class="form-control"></textarea>
+                <hr>
+                <button class="btn btn-success center-block"
+                  ng-click="update()"><%= t "rooms.update" %></button>
+              </div>
+              <div class="col-sm-6 members">
+                <h4><%= t "rooms.admin" %></h4>
+                <hr>
+                <img ng-src="{{ item.avatar.thumb.url }}"
+                  alt="" ng-repeat="item in room.list_admin" class="avatar"
+                  data-toggle="tooltip" title="{{ item.username }}">
+                <hr>
+
+                <div ng-if="room.list_members.length > 0">
+                  <h4><%= t "rooms.members" %></h4>
+                  <hr>
+                  <img ng-src="{{ item.avatar.thumb.url }}"
+                     alt="" ng-repeat="item in room.list_members" class="avatar"
+                       data-toggle="tooltip" title="{{ item.username }}">
+                  <hr>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</script>

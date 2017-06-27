@@ -1,0 +1,43 @@
+<div class="row" ng-mouseover="isRead(message)">
+  <div class="col-sm-12">
+    <hr ng-if="message.user.id !== data.messages[$index -1].user.id">
+    <div class="row message-content">
+      <div class="col-xs-3 col-sm-1">
+        <img ng-src="{{ message.user.avatar.thumb.url }}" alt=""
+          ng-if="message.user.id !== data.messages[$index -1].user.id"
+          class="img-responsive avatar center-block">
+      </div>
+      <div class="col-xs-9 col-sm-10
+        {{ message.replies.length + message.mentions.length > 0 ? 'notice' : '' }}">
+        <div ng-if="message.user.id !== data.messages[$index -1].user.id" class="userinfo">
+          <a href="">
+            <b>{{ message.user.username || 'Loading..' }}</b>
+            <small class="organization">{{ message.user.organization }}</small>
+          </a>
+          <br>
+        </div>
+        <div ng-bind-html="convert(message.content)">
+        </div>
+      </div>
+      <div class="hidden-xs col-sm-1 time">
+        <small>
+          <em>{{ message.created_at.substr(11, 5); }}</em>
+        </small>
+      </div>
+    </div>
+  </div>
+  <div class="action">
+    <small ng-click="reply(message)">
+      <i class="fa fa-reply fa-fw"></i>
+      <%= t "rooms.reply" %>
+    </small>
+    <small ng-if="current_user == message.user.id">
+      <i class="fa fa-edit fa-fw"></i>
+      <%= t "rooms.edit" %>
+    </small>
+    <small ng-click="delete(message)" ng-if="current_user == message.user.id">
+      <i class="fa fa-trash fa-fw"></i>
+      <%= t "rooms.trash" %>
+    </small>
+  </div>
+</div>

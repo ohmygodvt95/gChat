@@ -18,4 +18,37 @@ app.service('Room', function ($http, $q) {
       });
     return deferred.promise;
   };
+  
+  this.show = function (room_id) {
+    var deferred = $q.defer();
+    var promise = $http.get(app.basePath + 'rooms/' + room_id)
+      .then(function (response) {
+        deferred.resolve(response);
+      }, function(response){
+        deferred.resolve(response);
+      });
+    return deferred.promise;
+  };
+
+  this.update = function (room) {
+    var deferred = $q.defer();
+    var promise = $http.patch(app.basePath + 'rooms/' + room.id, {room: room})
+      .then(function (response) {
+        deferred.resolve(response);
+      }, function(response){
+        deferred.resolve(response);
+      });
+    return deferred.promise;
+  };
+
+  this.leave = function (room) {
+    var deferred = $q.defer();
+    var promise = $http.delete(app.basePath + 'rooms/' + room.id + '/leave')
+      .then(function (response) {
+        deferred.resolve(response);
+      }, function(response){
+        deferred.resolve(response);
+      });
+    return deferred.promise;
+  };
 });

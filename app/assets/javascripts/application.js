@@ -22,11 +22,16 @@
 //= require angular-websocket
 //= require angular-actioncable
 //= require angular-modal-service/dst/angular-modal-service
+//= require angular-toastr/dist/angular-toastr.tpls.min
+//= require angularjs-datepicker/dist/angular-datepicker.min
+//= require angular-filter/dist/angular-filter.min
 //= require_self
 //= require_tree ./controllers
 //= require_tree ./services
 
-var app = angular.module('GChat', ['ngActionCable', 'ui.router', 'angularModalService']);
+var app = angular
+  .module('GChat', ['ngActionCable', 'ui.router', 'angularModalService',
+    'toastr', '720kb.datepicker', 'angular.filter']);
 app.basePath = $('meta[name="base"]').attr('content');
 app
   .config(function ($stateProvider, $urlRouterProvider) {
@@ -36,6 +41,33 @@ app
         views: {
           'main': {
             templateUrl: 'templates/welcome.html'
+          }
+        }
+      })
+      .state('room', {
+        url: '/{room_id: int}',
+        views: {
+          'main': {
+            templateUrl: 'templates/room.html',
+            controller: 'RoomController'
+          }
+        }
+      })
+      .state('room.edit', {
+        url: '/edit',
+        views: {
+          'main@': {
+            templateUrl: 'templates/roomedit.html',
+            controller: 'RoomInfoController'
+          }
+        }
+      })
+      .state('room.invite', {
+        url: '/invite',
+        views: {
+          'main@': {
+            templateUrl: 'templates/invite.html',
+            controller: 'InviteController'
           }
         }
       });

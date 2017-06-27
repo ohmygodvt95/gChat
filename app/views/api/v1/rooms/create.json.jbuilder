@@ -1,4 +1,4 @@
 json.message @message
 if @room
-  json.data @room
+  json.data @room.as_json user: current_user
 end

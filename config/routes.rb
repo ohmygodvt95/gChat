@@ -9,7 +9,17 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1, defaults: {format: :json} do
       resources :contacts, except: [:new, :show, :edit]
-      resources :rooms, except: [:new, :edit]
+      resources :tasks, only: [:index]
+      resources :rooms, except: [:new, :edit] do
+        resources :messages, except: [:new, :edit] do
+          resources :replies, only: :update
+          resources :mentions, only: :update
+        end
+        resources :invite, only: [:index, :create]
+        resource :leave, only: :destroy
+        resource :user_rooms, only: :update
+        resources :tasks, except: [:new, :show, :edit]
+      end
     end
   end
 

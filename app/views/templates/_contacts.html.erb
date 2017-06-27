@@ -69,7 +69,7 @@
                   <ul>
                     <li ng-repeat="item in searchResult.data"
                       ng-click="previewContact(item, 'search')">
-                      <img src="https://t4.ftcdn.net/jpg/01/14/32/23/160_F_114322373_YVmRgqPXptm6wif90TnrN04mVVW5yLnM.jpg" alt="">
+                      <img ng-src="{{ item.avatar.thumb.url }}" alt="">
                       <div>
                         <b>{{ item.username }}</b>
                         <br>
@@ -79,10 +79,12 @@
                   </ul>
                 </div>
                 <div class="col-sm-6 preview" ng-if="previewSearchItem != null">
-                  <img src="https://t4.ftcdn.net/jpg/01/14/32/23/160_F_114322373_YVmRgqPXptm6wif90TnrN04mVVW5yLnM.jpg"
+                  <img ng-src="{{ previewSearchItem.avatar.thumb.url }}"
                     class="img-responsive center-block">
                   <hr>
                   <h3 class="text-center">{{ previewSearchItem.username }}</h3>
+                  <div class="text-center">{{ previewSearchItem.email }}</div>
+                  <div class="text-center">{{ previewSearchItem.organization }}</div>
                   <hr>
                   <button class="btn btn-primary center-block" ng-click="addContact(previewSearchItem)">
                     <%= t "contacts.add_contact" %>
@@ -101,12 +103,12 @@
                     <div class="col-sm-12">
                       <div>
                         <button class="btn btn-flat btn-sm"
-                                ng-click="page(requests.prev_page, 'request')">
+                          ng-click="page(requests.prev_page, 'request')">
                           <i class="fa fa-arrow-left"></i>
                         </button>
                         ({{ requests.current_page }} / {{ requests.total_pages }})
                         <button class="btn btn-flat btn-sm"
-                                ng-click="page(requests.next_page, 'request')">
+                          ng-click="page(requests.next_page, 'request')">
                           <i class="fa fa-arrow-right"></i>
                         </button>
                       </div>
@@ -115,7 +117,7 @@
                   </div>
                   <ul>
                     <li ng-repeat="item in requests.data" ng-click="previewContact(item, 'request')">
-                      <img src="https://t4.ftcdn.net/jpg/01/14/32/23/160_F_114322373_YVmRgqPXptm6wif90TnrN04mVVW5yLnM.jpg" alt="">
+                      <img ng-src="{{ item.avatar.thumb.url }}" alt="">
                       <div>
                         <b>{{ item.username }}</b>
                         <br>
@@ -125,10 +127,12 @@
                   </ul>
                 </div>
                 <div class="col-sm-6 preview" ng-if="previewRequestItem != null">
-                  <img src="https://t4.ftcdn.net/jpg/01/14/32/23/160_F_114322373_YVmRgqPXptm6wif90TnrN04mVVW5yLnM.jpg"
-                       class="img-responsive center-block">
+                  <img ng-src="{{ previewRequestItem.avatar.thumb.url }}"
+                    class="img-responsive center-block">
                   <hr>
                   <h3 class="text-center">{{ previewRequestItem.username }}</h3>
+                  <div class="text-center">{{ previewRequestItem.email }}</div>
+                  <div class="text-center">{{ previewRequestItem.organization }}</div>
                   <hr>
                   <button class="btn btn-success center-block"
                     ng-click="accept(previewRequestItem)">
@@ -148,12 +152,12 @@
                     <div class="col-sm-12">
                       <div>
                         <button class="btn btn-flat btn-sm"
-                                ng-click="page(myContacts.prev_page, 'my_contact')">
+                          ng-click="page(myContacts.prev_page, 'my_contact')">
                           <i class="fa fa-arrow-left"></i>
                         </button>
                         ({{ myContacts.current_page }} / {{ myContacts.total_pages }})
                         <button class="btn btn-flat btn-sm"
-                                ng-click="page(myContacts.next_page, 'my_contact')">
+                          ng-click="page(myContacts.next_page, 'my_contact')">
                           <i class="fa fa-arrow-right"></i>
                         </button>
                       </div>
@@ -162,7 +166,7 @@
                   </div>
                   <ul>
                     <li ng-repeat="item in myContacts.data" ng-click="previewContact(item, 'my_contact')">
-                      <img src="https://t4.ftcdn.net/jpg/01/14/32/23/160_F_114322373_YVmRgqPXptm6wif90TnrN04mVVW5yLnM.jpg" alt="">
+                      <img ng-src="{{ item.avatar.thumb.url }}" alt="">
                       <div>
                         <b>{{ item.username }}</b>
                         <br>
@@ -172,10 +176,12 @@
                   </ul>
                 </div>
                 <div class="col-sm-6 preview" ng-if="previewMyContactItem != null">
-                  <img src="https://t4.ftcdn.net/jpg/01/14/32/23/160_F_114322373_YVmRgqPXptm6wif90TnrN04mVVW5yLnM.jpg"
+                  <img ng-src="{{ previewMyContactItem.avatar.thumb.url }}"
                     class="img-responsive center-block">
                   <hr>
                   <h3 class="text-center">{{ previewMyContactItem.username }}</h3>
+                  <div class="text-center">{{ previewMyContactItem.email }}</div>
+                  <div class="text-center">{{ previewMyContactItem.organization }}</div>
                   <hr>
                   <button class="btn btn-danger center-block" ng-click="destroy(previewMyContactItem)">
                     <%= t "contacts.destroy_contact" %>

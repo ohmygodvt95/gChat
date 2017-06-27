@@ -1,0 +1,28 @@
+<div class="panel panel-primary task" ng-repeat="task in my_tasks">
+  <div class="panel-body">
+    <%= t "rooms.creator" %> : {{ task.user.username }}
+    <br>
+    <%= t "rooms.due_date" %>:
+    <span class="label label-warning">
+      {{ task.due_date.substr(0, 10) }}
+    </span>
+    <hr>
+    {{ task.content }}
+    <div ng-if="task.users.length > 1">
+      <hr>
+      <%= t "rooms.add_task_for" %>: <%= t "rooms.you" %> {{ task.users.length - 1 }} <%= t "rooms.people" %>
+    </div>
+
+  </div>
+  <div class="panel-footer">
+    <button class="btn btn-success btn-sm" ng-click="finishedTask(task)">
+      <i class="fa fa-check fa-fw"></i>
+      <%= t "rooms.finished" %>
+    </button>
+    <button class="btn btn-danger btn-sm" ng-if="task.user_id == current_user"
+      ng-click="deleteTask(task)">
+      <i class="fa fa-trash fa-fw"></i>
+      <%= t "rooms.destroy" %>
+    </button>
+  </div>
+</div>

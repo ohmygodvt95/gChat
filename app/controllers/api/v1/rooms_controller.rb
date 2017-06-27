@@ -4,8 +4,11 @@ class Api::V1::RoomsController < ApplicationController
   before_action :find_room, only: [:show, :update, :destroy]
 
   def index
-    @rooms =  current_user.rooms.order UserRoom.table_name + ".updated_at DESC"
+    @rooms =  current_user.rooms.order UserRoom.table_name + ".focus_at DESC"
     @rooms = @rooms.as_json user: current_user
+  end
+
+  def show
   end
 
   def create
@@ -20,18 +23,26 @@ class Api::V1::RoomsController < ApplicationController
     end
   end
 
+  def update
+    if @room.update_attributes update_rooms_params
+      @message = t "rooms.message.update_success", name: @room.name
+    else
+      @message = t "rooms.message.update_failure"
+      render status: :bad_request
+    end
+  end
+
   def destroy
     if @room.can_destroy_by_user current_user
       @room.destroy
-      @message = t "rooms.message.create_success"
+      @message = t "rooms.message.destroy_success"
     else
-      @message = t "rooms.message.create_success"
+      @message = t "rooms.message.destroy_failure"
       render status: :bad_request
     end
   end
 
   protected
-  private
   def find_room
     @room = current_user.rooms.find_by id: params[:id]
     unless @room
@@ -41,5 +52,9 @@ class Api::V1::RoomsController < ApplicationController
 
   def new_rooms_params
     params.require(:room).permit :name, :description, :room_type
+  end
+
+  def update_rooms_params
+    params.require(:room).permit :name, :description
   end
 end

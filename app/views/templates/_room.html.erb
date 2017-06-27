@@ -1,0 +1,47 @@
+<script type="text/ng-template" id="templates/room.html">
+  <section class="content room">
+    <div class="box">
+      <div class="box-header with-border">
+        <h3 class="box-title">{{ room.name || 'Loading...' }}</h3>
+        <span class="dropdown pull-right" ng-if="room.room_type == 'group'">
+          <a class="dropdown-toggle" type="button" data-toggle="dropdown">
+            <i class="fa fa-fw fa-cog"></i>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a ng-click="leave()"><%= t "rooms.leave_this_room" %></a></li>
+          </ul>
+        </span>
+        <a class="pull-right" ng-if="room.is_admin" ui-sref="room.edit({room_id: room.id})">
+          <i class="fa fa-fw fa-info-circle"></i>
+        </a>
+        <a class="pull-right" ng-if="room.is_admin && room.room_type == 'group'"
+          ui-sref="room.invite({room_id: room.id})">
+          <i class="fa fa-fw fa-user-plus"></i>
+        </a>
+      </div>
+      <div class="row">
+        <div class="col-sm-9">
+          <%= render "templates/messages" %>
+        </div>
+        <div class="col-sm-3">
+          <h4><%= t "rooms.group_description" %></h4>
+          <hr>
+          <div class="description" ng-bind-html="convert(standardize(room.description))">
+          </div>
+          <hr>
+          <h4>
+            <%= t "rooms.my_tasks" %> <span class="badge">{{ my_tasks.length }}</span>
+            <button class="btn btn-primary" data-toggle="tooltip" title="Add a new task"
+              ng-click="addTask()">
+              <i class="fa fa-fw fa-plus"></i>
+            </button>
+          </h4>
+          <hr>
+          <div class="tasks">
+            <%= render "templates/tasks" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</script>

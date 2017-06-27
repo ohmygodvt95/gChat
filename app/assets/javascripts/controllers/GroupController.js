@@ -1,4 +1,5 @@
-app.controller('GroupController', function ($scope, Room, close) {
+app.controller('GroupController', function ($scope, Room, toastr, close) {
+  $scope.close = close;
   /**
    * Init controller
    */
@@ -12,12 +13,8 @@ app.controller('GroupController', function ($scope, Room, close) {
 
   $scope.create = function () {
     Room.create($scope.room).then(function (response) {
-      $scope.message = response.data.message;
-      $scope.room = {
-        name: '',
-        description: '',
-        room_type: 'group'
-      }
+      toastr.success(response.data.message);
+      $scope.close();
     });
   };
   // init

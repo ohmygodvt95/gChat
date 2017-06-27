@@ -1,0 +1,31 @@
+a<script type="text/ng-template" id="templates/mention.html">
+  <div class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close"
+            data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">
+            <i class="fa fa-wechat"></i>
+            <%= t "rooms.mention_desc" %>
+          </h4>
+        </div>
+        <div class="modal-body">
+          <select ng-model="list" title="Mention" class="form-control list-mention" multiple>
+            <option ng-value="user" ng-repeat="user in room.list_admin"
+              style="background-image: url('{{ user.avatar.thumb.url }}')">{{ user.username }}</option>
+            <option ng-value="user" ng-repeat="user in room.list_members"
+              style="background-image: url('{{ user.avatar.thumb.url }}')">{{ user.username }}</option>
+          </select>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" ng-click="mention()">
+            Mention
+            <span ng-if="list.length > 0"> {{ list.length }} <%= t "rooms.people" %></span>
+          </button>
+          <button class="btn btn-danger" ng-click="close()">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</script>

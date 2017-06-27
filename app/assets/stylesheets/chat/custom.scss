@@ -1,5 +1,13 @@
 $gray: #808080;
 $black: #000;
+$white: #FFF;
+$fa: #fafafa;
+$dodgerblue: #1e90ff;
+$targetmsg: #357CA5;
+$hovermsg: #00a7d0;
+$re: #66A300;
+$notice: #598F00;
+$boxfooter: #EAEBE9;
 
 .list-contact ul {
   list-style: none;
@@ -33,6 +41,7 @@ $black: #000;
     box-shadow: 0 0 5px $black;
   }
 }
+
 .modal {
 
   .tab-pane {
@@ -41,7 +50,7 @@ $black: #000;
     overflow-y: auto;
   }
 
-  hr{
+  hr {
     margin: 10px;
   }
 }
@@ -51,7 +60,236 @@ $black: #000;
 }
 
 .navbar-custom-menu {
+
   a {
     cursor: pointer;
   }
+}
+
+.room {
+  padding: 5px;
+  height: calc(100vh - 50px);
+
+  i {
+    transition: 0.25s;
+    cursor: pointer;
+  }
+
+  i:hover {
+    text-shadow: 0 0 1px $black;
+  }
+
+  .box {
+    margin-bottom: 0;
+
+    .col-sm-3 {
+      padding-left: 0;
+    }
+
+    .box-header{
+      box-shadow: 0 2px 2px -2px $black;
+    }
+  }
+
+  .description {
+    height: 150px;
+    overflow-y: auto;
+  }
+
+  .tasks {
+    height: calc(100vh - 450px);
+    overflow-y: auto;
+
+    .task {
+      hr {
+        margin: 10px 0 0 5px;
+      }
+    }
+  }
+
+  .box-body {
+    height: calc(100vh - 245px) !important;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .box-footer {
+    background-color: $boxfooter;
+  }
+
+  .avatar {
+    border: 2px solid $fa;
+    border-radius: 50% 50% 0;
+    height: 36px;
+    width: 36px;
+  }
+
+  .messages {
+    list-style: none;
+    padding: 0;
+
+    .notice{
+      border-left: 1px solid $notice;
+    }
+
+    li:hover {
+      .action{
+        display: block;
+      }
+    }
+
+    li {
+      padding: 0 10px;
+      position: relative;
+      z-index: 10;
+
+      .organization {
+        color: $gray;
+        font-style: italic;
+        padding-left: 10px;
+      }
+
+      .action {
+        background-color: $white;
+        border: 1px solid $hovermsg;
+        border-radius: 3px;
+        bottom: -8px;
+        display: none;
+        position: absolute;
+        right: 30px;
+        padding-left: 10px;
+        padding-right: 10px;
+
+        small {
+          cursor: pointer;
+        }
+
+        small:hover {
+          color: $targetmsg;
+        }
+      }
+
+      .load-messages{
+        transition: .25s;
+        color: $targetmsg;
+        cursor: pointer;
+      }
+
+      .load-messages:hover{
+        color: $hovermsg;
+      }
+
+      .userinfo{
+        padding-bottom: 5px;
+      }
+
+      .message-content {
+        cursor: pointer;
+        transition: 0.25s;
+        border-radius: 3px;
+        padding: 4px 0;
+        box-sizing: border-box;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        border: 1px solid transparent;
+
+        .reply, .mention {
+          background-color: $re;
+          padding: 0 3px;
+          color: $white;
+          font-weight: bolder;
+          border-radius: 2px;
+
+          img {
+            background-color: $white;
+            margin-top: -3px;
+            height: 16px;
+            width: 16px;
+            border-radius: 50%;
+          }
+        }
+      }
+
+      .time {
+        text-align: right;
+        font-size: 12px;
+        color: gray;
+        padding-top: 3px;
+        transition: 0.25s;
+        overflow: hidden;
+        padding-right: 10px;
+      }
+    }
+
+    li:hover .message-content {
+      padding: 4px 0;
+      border: 1px solid $dodgerblue;
+      background-color: rgba(0, 178, 240, 0.1)
+    }
+  }
+}
+
+.members {
+  img {
+    margin: 5px;
+  }
+}
+
+.sidebar-menu {
+  .box {
+    position: relative;
+    margin: 0 5px;
+    padding: 0 5px;
+    color: $black;
+    font-size: 12px;
+
+    .label {
+      position: absolute;
+      top: -10px;
+      right: -5px;
+      text-align: center;
+      font-size: 9px;
+      padding: 2px 3px;
+    }
+  }
+}
+
+.tools {
+
+  .btn {
+    padding: 2px 6px;
+    margin-bottom: 3px;
+  }
+
+  .popover-content {
+    word-break: break-all;
+
+    span {
+      transition: .25s;
+      cursor: pointer;
+      font-size: 25px!important;
+      padding: 10px;
+    }
+
+    span:hover {
+      color: $targetmsg;
+    }
+  }
+}
+
+.reply-preview {
+  height: auto!important;
+}
+
+.list-mention {
+  option {
+    background-repeat: no-repeat;
+    padding: 8px 0 8px 40px;
+    background-size: 32px 32px;
+  }
+}
+
+.task-body {
+  height: 85vh;
+  overflow-y: auto;
 }

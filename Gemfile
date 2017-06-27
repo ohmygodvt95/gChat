@@ -13,6 +13,9 @@ gem "redis", "~> 3.0"
 gem "devise"
 gem "carrierwave", "~> 1.0"
 gem "kaminari"
+gem "config"
+gem "mini_magick", "3.8.0"
+
 group :development, :test do
   gem "byebug", platform: :mri
 end

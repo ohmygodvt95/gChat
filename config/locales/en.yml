@@ -48,8 +48,60 @@ en:
     message:
       create_success: You have been created %{name} group chat
       create_failure: Can't create group chat
+      update_success: You have been updated %{name} group chat info
+      update_failure: Can't update group chat info
+      destroy_success: You have been destroyed group chat
+      destroy_failure: You can't destroy group chat
     room_not_found: Group chat does not exist
     create_group: Create a new group chat
     group_name: Group name
     group_description: Group description
     create: Create
+    description: Description
+    create_message_failure: Message can't create
+    no_more: No more messages!
+    admin: Administrators
+    members: Members
+    update: Update
+    invite: Invite
+    invite_request: Invite to the chat room
+    invite_by_email: Invite to the chat room by email
+    invite_from_list_contatcs: Invite from my list contacts
+    user_in_room: "%{name} is already in the chat room"
+    user_not_in_room: "%{name} is not in the chat room"
+    invite_success: "You invited %{name} to the chat room"
+    leave_this_room: Leave this room
+    leave_success: You have left the chat room
+    leave_failure: You can not leave the chat room
+    reply: Reply
+    trash: Delete
+    edit: Edit
+    re: RE
+    me: ME
+    mention_desc: "ME: Specify who you're mention"
+    my_tasks: My tasks
+    message_not_found: Message does not exist
+    message_delete_succees: Message has been destroy
+    message_delete_failure: Message can't destroy
+    new_line: New line
+    send: Send
+    emoticons: Emoticons
+    add_a_task: Add a new task
+    add_task_for: Add task for
+    due_date: Due date
+    task_created: Task created
+    finished: Done
+    reply_message: Reply message
+    shift_enter: Enter for send message, Shift + Enter for line break!
+    people: people
+    you_assign_task: You assign task for
+    tasks: Tasks management
+    in_room: In room
+    destroy: Delete
+    creator: Creator
+    add_task_for: Add task for
+    you: you and
+    task_delete: Task has been deleted
+    task_update: Task has been completed
+    in_progress: In progress
+    completed: Completed

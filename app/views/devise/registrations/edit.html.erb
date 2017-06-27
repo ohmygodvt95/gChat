@@ -1,64 +1,100 @@
-<div class="container">
+<div class="container magin">
   <div class="row">
-    <div class="col-sm-6 col-sm-offset-3">
-      <h2 class="text-center"><%= t "header.edit_account" %></h2>
-      <hr>
-
-      <%= form_for resource, as: resource_name,
-        url: registration_path(resource_name),
-        html: {method: :put} do |f| %>
-        <%= devise_error_messages! %>
-
-        <div class="field">
-          <%= f.label :email %><br />
-          <%= f.email_field :email, autofocus: true, class: "form-control" %>
-        </div>
-
-        <div class="field">
-          <%= f.label :username %><br />
-          <%= f.text_field :username, autofocus: true, class: "form-control" %>
-        </div>
-
-        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-          <div><%= t "devise.edit.currently_waiting_confirm" %>: <%= resource.unconfirmed_email %></div>
-        <% end %>
-
-        <div class="field">
-          <%= f.label :password %> <i>(<%= t "devise.edit.leave_blank_if" %>)</i><br />
-          <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
-          <% if @minimum_password_length %>
-            <br />
-            <em><%= @minimum_password_length %> <%= t "devise.edit.char_minimum" %></em>
-          <% end %>
-        </div>
-
-        <div class="field">
-          <%= f.label :password_confirmation %><br />
-          <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
-        </div>
-
-        <div class="field">
-          <%= f.label :current_password %> <i>
-          (<%= t "devise.edit.we_need_your_current_password" %>)</i><br />
-          <%= f.password_field :current_password, autocomplete: "off", class: "form-control" %>
-        </div>
-
-        <div class="actions">
+    <div class="col-sm-6 col-sm-offset-3 ">
+      <div class="panel panel-primary">
+        <div class="panel-body">
+          <h2 class="text-center"><%= t "header.edit_account" %></h2>
           <hr>
-          <%= f.submit t("devise.edit.update"), class: "btn btn-success btn-block" %>
+
+          <%= form_for resource, as: resource_name,
+            url: registration_path(resource_name),
+            html: {method: :put} do |f| %>
+            <%= devise_error_messages! %>
+            <div class="field">
+              <%= f.label :email %><br />
+              <%= f.email_field :email, autofocus: true, class: "form-control" %>
+            </div>
+
+            <div class="field">
+              <%= f.label :username %><br />
+              <%= f.text_field :username, autofocus: true, class: "form-control" %>
+            </div>
+
+            <div class="field">
+              <%= f.label :organization %><br />
+              <%= f.text_field :organization, autofocus: true, class: "form-control" %>
+            </div>
+
+            <div class="field">
+              <%= f.label :division %><br />
+              <%= f.text_field :division, autofocus: true, class: "form-control" %>
+            </div>
+
+            <div class="field">
+              <%= f.label :phone %><br />
+              <%= f.text_field :phone, autofocus: true, class: "form-control" %>
+            </div>
+
+            <div class="field">
+              <%= f.label :url %><br />
+              <%= f.text_field :url, autofocus: true, class: "form-control" %>
+            </div>
+
+            <div class="field">
+              <%= f.label :description %><br />
+              <%= f.text_field :description, autofocus: true, class: "form-control" %>
+            </div>
+
+            <div class="field">
+              <%= f.label :avatar %><br />
+              <%= f.file_field :avatar, autofocus: true %>
+              <br>
+              <img src="<%= current_user.avatar.thumb.url %>" alt="avatar"
+                   class="img-responsive center-block">
+              <br>
+            </div>
+
+            <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+              <div><%= t "devise.edit.currently_waiting_confirm" %>: <%= resource.unconfirmed_email %></div>
+            <% end %>
+
+            <div class="field">
+              <%= f.label :password %> <i>(<%= t "devise.edit.leave_blank_if" %>, </i>
+              <% if @minimum_password_length %>
+                <em><%= @minimum_password_length %> <%= t "devise.edit.char_minimum" %></em>)
+              <% end %>
+              <br />
+              <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+            </div>
+
+            <div class="field">
+              <%= f.label :password_confirmation %><br />
+              <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+            </div>
+
+            <div class="field">
+              <%= f.label :current_password %> <i>
+              (<%= t "devise.edit.we_need_your_current_password" %>)</i><br />
+              <%= f.password_field :current_password, autocomplete: "off", class: "form-control" %>
+            </div>
+
+            <div class="actions">
+              <hr>
+              <%= f.submit t("devise.edit.update"), class: "btn btn-success btn-block" %>
+            </div>
+          <% end %>
+
+          <h3><%= t "devise.edit.cancel_account" %></h3>
+
+          <p><%= t "devise.edit.unhappy" %>
+            <%= button_to t("devise.edit.cancel_account"),
+              registration_path(resource_name),
+              data: {confirm: t("devise.edit.are_you_sure")},
+              method: :delete,
+              class: "btn btn-danger btn-block" %></p>
+          <%= link_to t("devise.edit.back"), :back %>
         </div>
-      <% end %>
-
-      <h3><%= t "devise.edit.cancel_account" %></h3>
-
-      <p><%= t "devise.edit.unhappy" %>
-        <%= button_to t("devise.edit.cancel_account"),
-          registration_path(resource_name),
-          data: {confirm: t("devise.edit.are_you_sure")},
-          method: :delete,
-          class: "btn btn-danger btn-block" %></p>
-
-      <%= link_to t("devise.edit.back"), :back %>
+      </div>
     </div>
   </div>
 </div>
